@@ -1,4 +1,4 @@
-import logoImage from "figma:asset/c13cca16d7f41b2233e632ec5f799ebb98dc1e40.png";
+import logoImage from "../../assets/c13cca16d7f41b2233e632ec5f799ebb98dc1e40.png";
 import { ChevronDown } from "lucide-react";
 
 export function Header() {

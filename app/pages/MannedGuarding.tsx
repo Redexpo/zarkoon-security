@@ -1,0 +1,249 @@
+import { useState } from "react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Youtube, Shield, CheckCircle } from "lucide-react";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+import { Button } from "../components/ui/button";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "../components/ui/select";
+
+const heroImage = "https://images.unsplash.com/photo-1582139329536-e7284fece509?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWN1cml0eSUyMG9mZmljZXIlMjBndWFyZHxlbnwxfHx8fDE3NzE5MTU5MzN8MA&ixlib=rb-4.1.0&q=80&w=1080";
+
+export function MannedGuarding() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        postCode: "",
+        service: "",
+        address: "",
+        message: "",
+    });
+
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (/^[0-9+]*$/.test(value)) {
+            setFormData({ ...formData, phone: value });
+        }
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log("Quote requested:", formData);
+        alert("Thank you for your request! We will provide a quote shortly.");
+        setFormData({ name: "", email: "", phone: "", postCode: "", service: "", address: "", message: "" });
+    };
+
+    const socialLinks = [
+        { name: "Facebook", icon: Facebook, url: "https://facebook.com/zarkoonsecurity" },
+        { name: "Instagram", icon: Instagram, url: "https://instagram.com/zarkoonsecurity" },
+        { name: "Twitter", icon: Twitter, url: "https://twitter.com/zarkoonsecurity" },
+        { name: "Youtube", icon: Youtube, url: "https://youtube.com/@zarkoonsecurity" },
+    ];
+
+    return (
+        <div className="min-h-screen font-['Outfit'] bg-gray-50">
+            {/* Unique Hero Banner */}
+            <section
+                className="relative h-[450px] flex items-center justify-start bg-cover bg-center overflow-hidden"
+                style={{ backgroundImage: `url(${heroImage})` }}
+            >
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0A1929]/95 via-[#0A1929]/80 to-transparent"></div>
+                <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+                    <div className="max-w-2xl">
+                        <p className="text-[#5DADE2] text-sm font-bold uppercase tracking-[0.3em] mb-4">Professional Protection</p>
+                        <h1 className="text-white text-6xl font-bold mb-6 tracking-tight leading-tight">
+                            Manned Guarding <br />
+                            <span className="text-[#5DADE2]">Services</span>
+                        </h1>
+                        <div className="w-20 h-1.5 bg-[#5DADE2] rounded-full"></div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Main Content & Quote Form Split */}
+            <section className="py-24 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+                {/* Left Side - Service Description (Charcoal Grey) */}
+                <div className="lg:col-span-7 space-y-12">
+                    <div className="bg-[#A0CFFF]/10 p-10 rounded-3xl border border-[#A0CFFF]/20">
+                        <h2 className="text-[#0A1929] text-3xl font-bold mb-6 flex items-center gap-4">
+                            <Shield className="w-8 h-8 text-[#1E5A8E]" />
+                            Elite Security Personnel
+                        </h2>
+                        <p className="text-[#2C3E50] text-lg font-light leading-relaxed mb-8">
+                            Zarkoon Security provides premier manned guarding services tailored for high-stakes environments. Our officers are SIA-licensed professionals trained to handle complex security challenges with precision and absolute discretion.
+                        </p>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {[
+                                "Static Site Guarding",
+                                "Concierge & Reception Security",
+                                "Retail Loss Prevention",
+                                "High-Value Asset Protection",
+                                "Conflict Management Experts",
+                                "24/7 Rapid Deployment"
+                            ].map((item, idx) => (
+                                <li key={idx} className="flex items-center gap-3 text-[#2C3E50]">
+                                    <CheckCircle className="w-5 h-5 text-[#5DADE2]" />
+                                    <span className="font-medium">{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="space-y-6">
+                        <h3 className="text-[#0A1929] text-2xl font-bold">Why Choose Zarkoon Manned Guarding?</h3>
+                        <p className="text-[#2C3E50] font-light leading-relaxed">
+                            Our approach goes beyond simple observation. We integrate human intelligence with modern security technology to provide an impenetrable shield for your business. Whether it's construction sites in Hayes or corporate offices in London, our presence is a deterrent to crime and a guarantee of safety.
+                        </p>
+                        <div className="grid grid-cols-3 gap-6 pt-6 text-center">
+                            <div className="p-4 bg-white rounded-xl shadow-md">
+                                <p className="text-3xl font-bold text-[#1E5A8E]">100%</p>
+                                <p className="text-xs text-gray-500 uppercase tracking-widest mt-2">SIA Licensed</p>
+                            </div>
+                            <div className="p-4 bg-white rounded-xl shadow-md">
+                                <p className="text-3xl font-bold text-[#1E5A8E]">24/7</p>
+                                <p className="text-xs text-gray-500 uppercase tracking-widest mt-2">Monitoring</p>
+                            </div>
+                            <div className="p-4 bg-white rounded-xl shadow-md">
+                                <p className="text-3xl font-bold text-[#1E5A8E]">UK</p>
+                                <p className="text-xs text-gray-500 uppercase tracking-widest mt-2">Wide Coverage</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right Side - Unique Quote Form */}
+                <div className="lg:col-span-5 relative">
+                    <div className="sticky top-24 bg-[#0A1929] rounded-[40px] shadow-2xl overflow-hidden border border-[#1E88E5]/30">
+                        <div className="bg-gradient-to-br from-[#1E5A8E] to-[#0A1929] p-10 text-white border-b border-[#1E88E5]/20">
+                            <h3 className="text-3xl font-bold mb-2">Get A Free Quote</h3>
+                            <p className="text-[#5DADE2] font-light text-sm uppercase tracking-widest">Response within 60 minutes</p>
+                        </div>
+                        <form onSubmit={handleSubmit} className="p-10 space-y-6">
+                            <div className="space-y-2">
+                                <label className="block text-sm font-bold text-[#5DADE2] uppercase tracking-wider">Full Name</label>
+                                <Input
+                                    value={formData.name}
+                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                    required
+                                    placeholder="E.g. John Doe"
+                                    className="bg-white border-2 border-gray-400 focus:border-[#5DADE2] text-[#0A1929]"
+                                />
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <label className="block text-sm font-bold text-[#5DADE2] uppercase tracking-wider">Email</label>
+                                    <Input
+                                        type="email"
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        required
+                                        placeholder="john@example.com"
+                                        className="bg-white border-2 border-gray-400 focus:border-[#5DADE2] text-[#0A1929]"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="block text-sm font-bold text-[#5DADE2] uppercase tracking-wider">Phone Number</label>
+                                    <Input
+                                        type="tel"
+                                        value={formData.phone}
+                                        onChange={handlePhoneChange}
+                                        required
+                                        placeholder="+44"
+                                        className="bg-white border-2 border-gray-400 focus:border-[#5DADE2] text-[#0A1929]"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <label className="block text-sm font-bold text-[#5DADE2] uppercase tracking-wider">Post Code</label>
+                                    <Input
+                                        type="number"
+                                        value={formData.postCode}
+                                        onChange={(e) => setFormData({ ...formData, postCode: e.target.value })}
+                                        required
+                                        placeholder="12345"
+                                        className="bg-white border-2 border-gray-400 focus:border-[#5DADE2] text-[#0A1929] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-auto [&::-webkit-inner-spin-button]:appearance-auto"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="block text-sm font-bold text-[#5DADE2] uppercase tracking-wider">Select Service</label>
+                                    <Select
+                                        value={formData.service}
+                                        onValueChange={(value) => setFormData({ ...formData, service: value })}
+                                    >
+                                        <SelectTrigger className="bg-white border-2 border-gray-400 focus:border-[#5DADE2] text-[#0A1929] h-11">
+                                            <SelectValue placeholder="Selection Service" />
+                                        </SelectTrigger>
+                                        <SelectContent className="bg-white border-gray-200 shadow-xl">
+                                            <SelectItem value="manned-guarding">Manned Guarding</SelectItem>
+                                            <SelectItem value="cctv-monitoring">CCTV Monitoring</SelectItem>
+                                            <SelectItem value="door-supervision">Door Supervision</SelectItem>
+                                            <SelectItem value="mobile-patrols">Mobile Patrols</SelectItem>
+                                            <SelectItem value="dog-handlers">Dog Handlers</SelectItem>
+                                            <SelectItem value="concierge-security">Concierge Security</SelectItem>
+                                            <SelectItem value="key-holding">Key Holding & Alarm Response Count</SelectItem>
+                                            <SelectItem value="fire-marshal">Fire Marshal</SelectItem>
+                                            <SelectItem value="event-security">event security</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="block text-sm font-bold text-[#5DADE2] uppercase tracking-wider">Site Address</label>
+                                <Input
+                                    value={formData.address}
+                                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                                    required
+                                    placeholder="Full site location"
+                                    className="bg-white border-2 border-gray-400 focus:border-[#5DADE2] text-[#0A1929]"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="block text-sm font-bold text-[#5DADE2] uppercase tracking-wider">Message</label>
+                                <Textarea
+                                    value={formData.message}
+                                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                    required
+                                    placeholder="Tell us about your security requirements"
+                                    className="bg-white border-2 border-gray-400 focus:border-[#5DADE2] text-[#0A1929] min-h-[100px]"
+                                />
+                            </div>
+                            <Button
+                                type="submit"
+                                className="w-full bg-[#1E5A8E] hover:bg-[#5DADE2] text-white h-14 rounded-xl font-bold text-lg shadow-xl transition-all duration-300 transform hover:-translate-y-1 uppercase tracking-widest border-2 border-[#5DADE2]/30"
+                            >
+                                Request Quote
+                            </Button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            {/* Call to Action Footer Section */}
+            <section className="bg-[#1E5A8E] py-24 pb-32">
+                <div className="max-w-7xl mx-auto px-6 text-center">
+                    <h2 className="text-white text-4xl font-bold mb-8">Ready to secure your premises?</h2>
+                    <div className="flex flex-col md:flex-row justify-center gap-6">
+                        <a href="tel:07466493229" className="flex items-center justify-center gap-3 bg-white text-[#1E5A8E] px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-gray-100 transition-colors">
+                            <Phone className="w-5 h-5" />
+                            07466493229
+                        </a>
+                        <a href="mailto:zarkoonsecure@gmail.com" className="flex items-center justify-center gap-3 bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1E5A8E] transition-all">
+                            <Mail className="w-5 h-5" />
+                            zarkoonsecure@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div >
+    );
+}

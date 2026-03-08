@@ -253,13 +253,13 @@ export function MobilePatrols() {
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <h2 className="text-white text-5xl font-bold mb-10 tracking-tighter">Ready to secure your peace of mind?</h2>
                     <div className="flex flex-col md:flex-row justify-center gap-10">
-                        <a href="tel:07466493229" className="flex items-center justify-center gap-4 bg-white text-[#1E5A8E] px-12 py-6 rounded-3xl font-black text-xl shadow-2xl hover:bg-gray-100 transition-all transform hover:-translate-y-2">
+                        <a href="tel:+447466493229" className="flex items-center justify-center gap-4 bg-white text-[#1E5A8E] px-12 py-6 rounded-3xl font-black text-xl shadow-2xl hover:bg-gray-100 transition-all transform hover:-translate-y-2">
                             <Phone className="w-8 h-8" />
                             07466493229
                         </a>
-                        <a href="mailto:zarkoonsecure@gmail.com" className="flex items-center justify-center gap-4 bg-transparent border-4 border-white text-white px-12 py-6 rounded-3xl font-black text-xl hover:bg-white hover:text-[#1E5A8E] transition-all transform hover:-translate-y-2">
+                        <a href="mailto:info@zarkoonsecurity.co.uk" className="flex items-center justify-center gap-4 bg-transparent border-4 border-white text-white px-12 py-6 rounded-3xl font-black text-xl hover:bg-white hover:text-[#1E5A8E] transition-all transform hover:-translate-y-2">
                             <Mail className="w-8 h-8" />
-                            zarkoonsecure@gmail.com
+                            info@zarkoonsecurity.co.uk
                         </a>
                     </div>
                 </div>

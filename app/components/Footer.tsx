@@ -62,13 +62,13 @@ export function Footer() {
               <div className="flex items-start gap-3 group">
                 <Phone className="w-4 h-4 text-[#5DADE2] flex-shrink-0 mt-1 transition-transform group-hover:scale-110" />
                 <div className="text-sm font-light">
-                  <p className="text-gray-400">Phone: <a href="tel:07466493229" className="hover:text-[#5DADE2] transition-colors font-medium">07466493229</a></p>
+                  <p className="text-gray-400">Phone: <a href="tel:+447466493229" className="hover:text-[#5DADE2] transition-colors font-medium">07466493229</a></p>
                 </div>
               </div>
               <div className="flex items-start gap-3 group">
                 <Mail className="w-4 h-4 text-[#5DADE2] flex-shrink-0 mt-1 transition-transform group-hover:scale-110" />
                 <div className="text-sm font-light">
-                  <p className="text-gray-400">Email: <a href="mailto:zarkoonsecure@gmail.com" className="hover:text-[#5DADE2] transition-colors font-medium">zarkoonsecure@gmail.com</a></p>
+                  <p className="text-gray-400">Email: <a href="mailto:info@zarkoonsecurity.co.uk" className="hover:text-[#5DADE2] transition-colors font-medium">info@zarkoonsecurity.co.uk</a></p>
                 </div>
               </div>
               <div className="flex items-start gap-3">

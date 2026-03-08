@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function AboutSection() {
   return (
     <section className="py-24 bg-gradient-to-br from-[#1A2332] via-[#0A1929] to-[#1A2332]">
@@ -33,9 +35,9 @@ export function AboutSection() {
             <p className="text-gray-400 text-base font-light leading-relaxed mb-10">
               Zarkoon Security Ltd has earned a reputation for delivering reliable and effective security solutions, ensuring the security of individuals, and businesses.
             </p>
-            <button className="bg-[#1E5A8E] text-white px-10 py-4 text-base font-bold tracking-wide hover:bg-[#5DADE2] transition-all duration-300 shadow-2xl hover:shadow-3xl">
+            <Link to="/about" className="inline-block bg-[#1E5A8E] text-white px-10 py-4 text-base font-bold tracking-wide hover:bg-[#5DADE2] transition-all duration-300 shadow-2xl hover:shadow-3xl">
               Read More
-            </button>
+            </Link>
           </div>
 
           {/* Right Column - Premium Image */}

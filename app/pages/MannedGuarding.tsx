@@ -233,13 +233,13 @@ export function MannedGuarding() {
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <h2 className="text-white text-4xl font-bold mb-8">Ready to secure your premises?</h2>
                     <div className="flex flex-col md:flex-row justify-center gap-6">
-                        <a href="tel:07466493229" className="flex items-center justify-center gap-3 bg-white text-[#1E5A8E] px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-gray-100 transition-colors">
+                        <a href="tel:+447466493229" className="flex items-center justify-center gap-3 bg-white text-[#1E5A8E] px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-gray-100 transition-colors">
                             <Phone className="w-5 h-5" />
                             07466493229
                         </a>
-                        <a href="mailto:zarkoonsecure@gmail.com" className="flex items-center justify-center gap-3 bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1E5A8E] transition-all">
+                        <a href="mailto:info@zarkoonsecurity.co.uk" className="flex items-center justify-center gap-3 bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1E5A8E] transition-all">
                             <Mail className="w-5 h-5" />
-                            zarkoonsecure@gmail.com
+                            info@zarkoonsecurity.co.uk
                         </a>
                     </div>
                 </div>

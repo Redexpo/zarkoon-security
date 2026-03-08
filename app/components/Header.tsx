@@ -30,8 +30,8 @@ const navLinks = [
   {
     name: "Career",
     dropdown: [
-      { name: "Current Vacancies", path: "/#career" },
-      { name: "Training Portal", path: "/#career" },
+      { name: "Current Vacancies", path: "/careers/vacancies" },
+      { name: "Training Portal", path: "/careers/training" },
     ]
   },
   { name: "Contact us", path: "/contact-us" },

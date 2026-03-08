@@ -266,7 +266,7 @@ export function GenderPayGapReport() {
             <h2 className="text-white text-3xl font-bold mb-8 tracking-wide">Contact Us</h2>
             <div className="space-y-3 text-white/70 text-sm font-light">
               <p>Phone: <span className="text-white font-medium">07466 493 229</span></p>
-              <p>Email: <span className="text-white font-medium">zarkoonsecure@gmail.com</span></p>
+              <p>Email: <span className="text-white font-medium">info@zarkoonsecurity.co.uk</span></p>
               <p>Address: <span className="text-white font-medium">Halsway Road, Hayes, UB3 3JT</span></p>
               <p>Website: <span className="text-[#5DADE2] font-medium">www.zarkoonsecurity.co.uk</span></p>
             </div>

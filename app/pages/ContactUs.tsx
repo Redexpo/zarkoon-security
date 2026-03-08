@@ -61,7 +61,7 @@ export function ContactUs() {
             {/* Contact Information */}
             <div className="space-y-6 mb-10">
               <div className="flex items-start gap-4 group">
-                <a href="tel:07466493229" className="flex items-start gap-4">
+                <a href="tel:+447466493229" className="flex items-start gap-4">
                   <Phone className="w-5 h-5 text-white flex-shrink-0 mt-1 transition-transform group-hover:scale-110" />
                   <div className="text-white">
                     <p className="font-semibold mb-1">Telephone:</p>
@@ -71,11 +71,11 @@ export function ContactUs() {
               </div>
 
               <div className="flex items-start gap-4 group">
-                <a href="mailto:zarkoonsecure@gmail.com" className="flex items-start gap-4">
+                <a href="mailto:info@zarkoonsecurity.co.uk" className="flex items-start gap-4">
                   <Mail className="w-5 h-5 text-white flex-shrink-0 mt-1 transition-transform group-hover:scale-110" />
                   <div className="text-white">
                     <p className="font-semibold mb-1">E-mail:</p>
-                    <p className="text-white hover:text-[#0A1929] transition-colors">zarkoonsecure@gmail.com</p>
+                    <p className="text-white hover:text-[#0A1929] transition-colors">info@zarkoonsecurity.co.uk</p>
                   </div>
                 </a>
               </div>

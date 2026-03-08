@@ -18,6 +18,8 @@ import { Accreditations } from "./pages/Accreditations";
 import { GenderPayGap } from "./pages/GenderPayGap";
 import { GenderPayGapReport } from "./pages/GenderPayGapReport";
 import { Policies } from "./pages/Policies";
+import { Vacancies } from "./pages/Vacancies";
+import { Training } from "./pages/Training";
 
 /** Shared layout: Header + page content + Footer */
 function MainLayout() {
@@ -55,6 +57,8 @@ export default function App() {
           <Route path="/retail-security" element={<RetailSecurity />} />
           <Route path="/accreditations" element={<Accreditations />} />
           <Route path="/policies" element={<Policies />} />
+          <Route path="/careers/vacancies" element={<Vacancies />} />
+          <Route path="/careers/training" element={<Training />} />
         </Route>
       </Routes>
     </Router>

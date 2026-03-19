@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { ChevronRight } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 // Placeholders based on reference
 const heroImage = "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&q=80&w=1920"; // Concert/Festival
@@ -10,6 +11,10 @@ const sideImageSmall = "https://images.unsplash.com/photo-1511578314322-379afb47
 export function EventsFestivals() {
     return (
         <div className="min-h-screen font-['Outfit'] bg-white">
+            <Helmet>
+                <title>Events & Festivals Security | Zarkoon Security Limited</title>
+                <meta name="description" content="Comprehensive safety solutions and crowd management for events and festivals ensuring a safe and memorable experience." />
+            </Helmet>
             {/* Hero Section */}
             <section className="relative min-h-[550px] flex items-center justify-center overflow-hidden">
                 <img

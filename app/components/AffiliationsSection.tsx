@@ -1,11 +1,18 @@
+import siaLogo from "../../assets/sia approved contractor.jpg";
+import chasLogo from "../../assets/chas standard.webp";
+import icoLogo from "../../assets/ico information.jpg";
+import socialValueLogo from "../../assets/social value.jpg";
+import nasduLogo from "../../assets/nasdu member.jpg";
+import safeContractorLogo from "../../assets/SAFECONTRACTOR-LOGO-V2.webp";
+
 export function AffiliationsSection() {
   const accreditations = [
-    { name: "SIA", label: "Security Industry Authority" },
-    { name: "CHAS", label: "CHAS Accredited" },
-    { name: "ICO.", label: "Information Commissioner's Office" },
-    { name: "Social Value", label: "Quality Management" },
-    { name: "NASDU", label: "NASDU Member" },
-    { name: "SafeContractor", label: "Health & Safety" }
+    { imgSrc: siaLogo, altText: "SIA Approved Contractor" },
+    { imgSrc: chasLogo, altText: "CHAS Accredited" },
+    { imgSrc: icoLogo, altText: "Information Commissioner's Office" },
+    { imgSrc: socialValueLogo, altText: "Social Value Quality Management" },
+    { imgSrc: nasduLogo, altText: "NASDU Member" },
+    { imgSrc: safeContractorLogo, altText: "SafeContractor Health & Safety" }
   ];
 
   return (
@@ -16,18 +23,17 @@ export function AffiliationsSection() {
         </h2>
         <div className="w-20 h-1 bg-[#5DADE2] mx-auto mb-12 rounded-full"></div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center justify-items-center">
           {accreditations.map((item, idx) => (
             <div
               key={idx}
-              className="group relative flex flex-col items-center justify-center w-full h-32 p-6 rounded-2xl bg-[#0A1929]/5 border border-transparent hover:border-[#5DADE2]/30 transition-all duration-300 hover:bg-white hover:shadow-xl"
+              className="group flex items-center justify-center w-full h-32 p-4 rounded-2xl bg-white border border-gray-200 hover:border-[#5DADE2]/30 transition-all duration-300 hover:shadow-xl"
             >
-              <div className="text-[#0A1929] font-black text-2xl tracking-tighter opacity-40 group-hover:opacity-100 group-hover:text-[#1E5A8E] transition-all duration-300">
-                {item.name}
-              </div>
-              <p className="mt-2 text-[10px] font-bold text-gray-500 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                {item.label}
-              </p>
+              <img 
+                src={item.imgSrc} 
+                alt={item.altText}
+                className="w-full h-full object-contain"
+              />
             </div>
           ))}
         </div>

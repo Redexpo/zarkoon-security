@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight, FileText, Download } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 /* Keyframe for the gold pulse — injected once into the document */
 const highlightStyle = `
@@ -210,6 +211,10 @@ export function Policies() {
 
   return (
     <div className="min-h-screen font-['Outfit'] bg-[#F4F6F9]">
+      <Helmet>
+        <title>Compliance & Policies | Zarkoon Security Limited</title>
+        <meta name="description" content="Access our official Quality, Health & Safety, and Environmental policy statements. Committed to high standards." />
+      </Helmet>
 
       {/* ══════════════════════════════════════════════════════════════════════
           TOP BANNER — full-width photo with centred "Policies & Procedures"

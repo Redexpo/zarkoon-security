@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Clock } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
-import { Checkbox } from "../components/ui/checkbox";
 import { Button } from "../components/ui/button";
 
 const heroImage = "https://images.unsplash.com/photo-1768796365086-a030a51d10b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWN1cml0eSUyMHBlcnNvbm5lbCUyMHByb2Zlc3Npb25hbCUyMG91dGRvb3J8ZW58MXx8fHwxNzcyNzAxNTEwfDA&ixlib=rb-4.1.0&q=80&w=1080";
@@ -13,7 +13,6 @@ export function ContactUs() {
     email: "",
     phone: "",
     message: "",
-    consent: false,
   });
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,19 +26,22 @@ export function ContactUs() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    alert("Thank you for your message! We will get back to you soon.");
-    setFormData({ name: "", email: "", phone: "", message: "", consent: false });
+    alert("Your message has been sent to Zarkoon Security Limited");
+    setFormData({ name: "", email: "", phone: "", message: "" });
   };
 
   const socialLinks = [
-    { name: "Facebook", icon: Facebook, url: "https://facebook.com/zarkoonsecurity" },
+    { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/company/zarkoon-security-limited" },
     { name: "Instagram", icon: Instagram, url: "https://instagram.com/zarkoonsecurity" },
-    { name: "Twitter", icon: Twitter, url: "https://twitter.com/zarkoonsecurity" },
-    { name: "Youtube", icon: Youtube, url: "https://youtube.com/@zarkoonsecurity" },
+    { name: "Facebook", icon: Facebook, url: "https://facebook.com/zarkoonsecurity" },
   ];
 
   return (
     <div className="min-h-screen font-['Outfit']">
+      <Helmet>
+        <title>Contact Us | Zarkoon Security Limited</title>
+        <meta name="description" content="Get in touch with our expert team for professional security consultations and service inquiries." />
+      </Helmet>
       {/* Hero Section */}
       <section
         className="relative h-[300px] flex items-center justify-center bg-cover bg-center"
@@ -48,6 +50,73 @@ export function ContactUs() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A1929]/90 to-[#0A1929]/70"></div>
         <div className="relative z-10 text-center">
           <h1 className="text-5xl font-bold text-white tracking-wide">Contact Us</h1>
+        </div>
+      </section>
+
+      {/* NEW ELEGANT 4-COLUMN CONTACT CARDS SECTION */}
+      <section className="py-20 bg-[#F8F9FA] relative">
+        <div className="absolute inset-0 opacity-30 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:20px_20px]"></div>
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-16">
+            <span className="bg-[#0A1929] text-[#D4AF37] px-6 py-2 text-sm font-bold tracking-widest uppercase mb-4 inline-block shadow-lg rounded-full border border-[#D4AF37]/30">
+              Get In Touch
+            </span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#0A1929] mb-4">
+              We're Here to Help
+            </h2>
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed font-medium">
+              Have questions or need assistance? Our team at Zarkoon Security Limited is ready to assist you.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+            {/* Card 1: Phone */}
+            <div className="bg-white p-10 text-center rounded-xl border border-gray-200 border-b-[4px] border-b-[#5DADE2] shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-[5px] flex flex-col items-center justify-start h-full">
+              <a href="tel:+447466493229" className="group inline-flex items-center justify-center w-16 h-16 bg-[#F8F9FA] rounded-full hover:bg-[#5DADE2]/10 transition-colors duration-300 mb-6 focus:outline-none focus:ring-2 focus:ring-[#5DADE2] focus:ring-offset-2">
+                <Phone className="w-7 h-7 text-[#5DADE2] group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
+              </a>
+              <h3 className="text-2xl font-bold text-[#0A1929] mb-4">Phone Number</h3>
+              <a href="tel:+447466493229" className="text-gray-600 font-semibold hover:text-[#5DADE2] hover:underline decoration-2 underline-offset-4 transition-all duration-300 text-lg focus:outline-none focus:text-[#5DADE2]">
+                07466 493229
+              </a>
+            </div>
+
+            {/* Card 2: Office Address */}
+            <div className="bg-white p-10 text-center rounded-xl border border-gray-200 border-b-[4px] border-b-[#D4AF37] shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-[5px] flex flex-col items-center justify-start h-full">
+              <a href="https://www.google.com/maps/search/?api=1&query=Halsway+Road,+Hayes,+UB3+3JT" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center justify-center w-16 h-16 bg-[#F8F9FA] rounded-full hover:bg-[#D4AF37]/10 transition-colors duration-300 mb-6 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2">
+                <MapPin className="w-7 h-7 text-[#D4AF37] group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
+              </a>
+              <h3 className="text-2xl font-bold text-[#0A1929] mb-4">Office Address</h3>
+              <a href="https://www.google.com/maps/search/?api=1&query=Halsway+Road,+Hayes,+UB3+3JT" target="_blank" rel="noopener noreferrer" className="text-gray-600 font-semibold leading-relaxed hover:text-[#D4AF37] hover:underline decoration-2 underline-offset-4 transition-all duration-300 text-[15px] focus:outline-none focus:text-[#D4AF37]">
+                Halsway Road,<br />
+                Hayes, UB3 3JT,<br />
+                United Kingdom
+              </a>
+            </div>
+
+            {/* Card 3: Email Address */}
+            <div className="bg-white p-10 text-center rounded-xl border border-gray-200 border-b-[4px] border-b-[#5DADE2] shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-[5px] flex flex-col items-center justify-start h-full">
+              <a href="mailto:info@zarkoonsecurity.co.uk" className="group inline-flex items-center justify-center w-16 h-16 bg-[#F8F9FA] rounded-full hover:bg-[#5DADE2]/10 transition-colors duration-300 mb-6 focus:outline-none focus:ring-2 focus:ring-[#5DADE2] focus:ring-offset-2">
+                <Mail className="w-7 h-7 text-[#5DADE2] group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
+              </a>
+              <h3 className="text-2xl font-bold text-[#0A1929] mb-4">Email Address</h3>
+              <a href="mailto:info@zarkoonsecurity.co.uk" className="text-gray-600 font-semibold hover:text-[#5DADE2] hover:underline decoration-2 underline-offset-4 transition-all duration-300 text-sm lg:text-[13px] xl:text-[15px] break-all focus:outline-none focus:text-[#5DADE2]">
+                info@zarkoonsecurity.co.uk
+              </a>
+            </div>
+
+            {/* Card 4: Office Hours */}
+            <div className="bg-white p-10 text-center rounded-xl border border-gray-200 border-b-[4px] border-b-[#D4AF37] shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-[5px] flex flex-col items-center justify-start h-full">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#F8F9FA] rounded-full mb-6 cursor-default">
+                <Clock className="w-7 h-7 text-[#D4AF37]" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-2xl font-bold text-[#0A1929] mb-4">Office Hours</h3>
+              <span className="text-gray-600 font-semibold text-lg cursor-default">
+                24/7 Service
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -99,10 +168,10 @@ export function ContactUs() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white hover:text-[#1E5A8E] text-white transition-all duration-300 hover:-translate-y-1 shadow-lg"
-                    aria-label={`Follow us on ${social.name}`}
+                    className="w-12 h-12 bg-[#FDFDFF] text-[#0A1929] rounded-xl flex items-center justify-center hover:bg-[#D4AF37] hover:text-[#FDFDFF] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_15px_-3px_rgba(212,175,55,0.4)] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] group"
+                    aria-label={`Follow us on ${social.name} | Zarkoon Security Limited`}
                   >
-                    <social.icon className="w-5 h-5" />
+                    <social.icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                   </a>
                 ))}
               </div>
@@ -190,21 +259,6 @@ export function ContactUs() {
                 />
               </div>
 
-              {/* Consent Checkbox */}
-              <div className="flex items-start gap-3 bg-gray-100 p-4 rounded-xl border border-gray-200">
-                <Checkbox
-                  id="consent"
-                  checked={formData.consent}
-                  onCheckedChange={(checked) =>
-                    setFormData({ ...formData, consent: checked as boolean })
-                  }
-                  required
-                  className="mt-1"
-                />
-                <label htmlFor="consent" className="text-sm font-medium text-gray-700 leading-relaxed">
-                  I hereby agree that this data will be stored and processed for the purpose of establishing contact. I am aware that I can revoke my consent at any time.*
-                </label>
-              </div>
 
               {/* Required Fields Notice */}
               <p className="text-xs text-gray-500 font-medium italic">

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Youtube, Shield, CheckCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Shield, CheckCircle } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Button } from "../components/ui/button";
@@ -33,19 +34,22 @@ export function MannedGuarding() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Quote requested:", formData);
-        alert("Thank you for your request! We will provide a quote shortly.");
+        alert("Your message has been sent to Zarkoon Security Limited");
         setFormData({ name: "", email: "", phone: "", postCode: "", service: "", address: "", message: "" });
     };
 
     const socialLinks = [
-        { name: "Facebook", icon: Facebook, url: "https://facebook.com/zarkoonsecurity" },
+        { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/company/zarkoon-security-limited" },
         { name: "Instagram", icon: Instagram, url: "https://instagram.com/zarkoonsecurity" },
-        { name: "Twitter", icon: Twitter, url: "https://twitter.com/zarkoonsecurity" },
-        { name: "Youtube", icon: Youtube, url: "https://youtube.com/@zarkoonsecurity" },
+        { name: "Facebook", icon: Facebook, url: "https://facebook.com/zarkoonsecurity" },
     ];
 
     return (
         <div className="min-h-screen font-['Outfit'] bg-gray-50">
+            <Helmet>
+                <title>Manned Guarding | Zarkoon Security Limited</title>
+                <meta name="description" content="Professional SIA-licensed manned guarding security solutions for businesses and properties across the UK." />
+            </Helmet>
             {/* Unique Hero Banner */}
             <section
                 className="relative h-[600px] flex items-center justify-start bg-cover bg-center overflow-hidden"

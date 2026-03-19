@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import {
   ChevronRight,
   MapPin,
@@ -13,7 +14,9 @@ import {
   UserCheck,
   Upload,
   Send,
-  ArrowRight
+  ArrowRight,
+  CheckCircle,
+  Loader2
 } from "lucide-react";
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -83,6 +86,62 @@ export function Vacancies() {
   const [showApplyModal, setShowApplyModal] = useState(false);
   const [selectedJob, setSelectedJob] = useState<string | null>(null);
 
+  // Form States
+  const [fullName, setFullName] = useState("");
+  const [siaNumber, setSiaNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [cvFile, setCvFile] = useState<File | null>(null);
+  const [errors, setErrors] = useState<string[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  // File Upload Logic
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setErrors(errors.filter(err => err !== "cvFile"));
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert("File is too large. Maximum size is 5MB to prevent system lag.");
+      return;
+    }
+
+    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    if (!allowedTypes.includes(file.type) && !file.name.match(/\.(pdf|doc|docx)$/i)) {
+      alert("Invalid file format. Please upload PDF, DOC, or DOCX.");
+      return;
+    }
+
+    setCvFile(file);
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newErrors: string[] = [];
+    if (!fullName.trim()) newErrors.push("fullName");
+    if (!email.trim()) newErrors.push("email");
+    if (!cvFile) newErrors.push("cvFile");
+
+    if (newErrors.length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors([]);
+    setIsSubmitting(true);
+
+    // Simulate reliable upload flow
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSuccess(true);
+      setFullName("");
+      setSiaNumber("");
+      setEmail("");
+      setCvFile(null);
+    }, 1800);
+  };
+
   // Filter logic
   const filteredJobs = jobsData.filter(job => {
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -98,10 +157,12 @@ export function Vacancies() {
 
   return (
     <div className="min-h-screen font-['Outfit'] bg-[#F4F6F9] pb-20">
+      <Helmet>
+        <title>Careers | Zarkoon Security Limited</title>
+        <meta name="description" content="Join the Zarkoon Security Limited team. We are always looking for dedicated, licensed professionals." />
+      </Helmet>
 
-      {/* ══════════════════════════════════════════════════════════════════════
-          TOP BANNER — Premium photo with recruitment focus
-      ════════════════════════════════════════════════════════════════════════ */}
+      {/* ── Hero Section ── */}
       <section className="relative w-full overflow-hidden" style={{ minHeight: "450px" }}>
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-1000"
@@ -115,7 +176,6 @@ export function Vacancies() {
         <div className="absolute top-0 right-0 w-96 h-full bg-[#D4AF37]/10 skew-x-[-20deg] translate-x-32" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col justify-center h-full pt-20" style={{ minHeight: "450px" }}>
-          {/* Breadcrumb */}
           <div className="flex items-center space-x-2 text-sm text-[#5DADE2] uppercase tracking-[0.2em] font-bold mb-8">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4 text-white/40" />
@@ -123,13 +183,13 @@ export function Vacancies() {
           </div>
 
           <h1 className="text-white text-5xl md:text-7xl font-extrabold tracking-tight leading-none mb-6 uppercase">
-            Start Your <span className="text-[#D4AF37]">Career</span>
+            Build Your <span className="text-[#D4AF37]">Career</span>
             <br />
-            With Zarkoon Security Limited
+            With Zarkoon Security
           </h1>
 
           <div className="inline-block bg-[#1E5A8E] text-white text-sm font-bold uppercase tracking-[0.2em] px-6 py-2 mb-8 border-l-4 border-[#D4AF37]">
-            Professional Vacancies 2026
+            Professional Careers 2026
           </div>
 
           <p className="text-white/80 text-lg max-w-2xl font-light leading-relaxed">
@@ -139,146 +199,22 @@ export function Vacancies() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════════════
-          SEARCH & FILTER BAR — Positioned clearly below banner
-      ════════════════════════════════════════════════════════════════════════ */}
-      <div className="max-w-7xl mx-auto px-6 py-10 relative z-20">
-        <div className="bg-white p-4 md:p-6 shadow-xl rounded-xl border border-gray-100 flex flex-col md:flex-row gap-4 items-center">
-
-          {/* Search Input */}
-          <div className="relative w-full flex-grow">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Search by role or city..."
-              className="w-full pl-12 pr-4 py-3 bg-[#F8FAFC] border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E5A8E] transition-all text-[#0A1929]"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+      {/* ── Careers Content Section ── */}
+      <section className="py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-[#0A1929] text-4xl md:text-5xl font-extrabold mb-10 tracking-tight">
+            Join the <span className="text-[#1E5A8E]">Zarkoon Team</span>
+          </h2>
+          
+          <div className="bg-[#F8FAFC] border-2 border-dashed border-[#1E5A8E]/20 rounded-[2rem] p-10 mb-16 shadow-inner">
+            <p className="text-gray-600 text-xl font-light leading-relaxed">
+              Zarkoon Security Limited is always looking for dedicated, licensed professionals 
+              to join our expanding team. If you are passionate about security and meet our high standards, 
+              please use the portal below to submit your details and CV. Our recruitment team reviews all 
+              submissions within 48 hours.
+            </p>
           </div>
-
-          {/* Role Filter */}
-          <div className="relative w-full md:w-64">
-            <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <select
-              className="w-full pl-12 pr-4 py-3 bg-[#F8FAFC] border border-gray-200 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-[#1E5A8E] text-[#0A1929] cursor-pointer"
-              value={filterRole}
-              onChange={(e) => setFilterRole(e.target.value)}
-            >
-              <option value="All">All Roles</option>
-              <option value="Operational">Operational</option>
-              <option value="Technical">Technical</option>
-              <option value="Event">Event Security</option>
-            </select>
-          </div>
-
-          {/* Total Counter */}
-          <div className="hidden lg:block px-6 py-3 border-l text-gray-400 font-medium">
-            <span className="text-[#1E5A8E] font-bold">{filteredJobs.length}</span> Results
-          </div>
-        </div>
-      </div>
-
-      {/* ══════════════════════════════════════════════════════════════════════
-          JOB GRID — Interactive cards
-      ════════════════════════════════════════════════════════════════════════ */}
-      <section className="pt-24 pb-10">
-        <div className="max-w-7xl mx-auto px-6">
-
-          {filteredJobs.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredJobs.map((job) => (
-                <div
-                  key={job.id}
-                  className="bg-white group rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.12)] transition-all duration-500 border border-gray-100 flex flex-col border-t-4 border-t-[#1E5A8E]"
-                >
-                  {/* Photo Head */}
-                  <div className="h-48 relative overflow-hidden">
-                    <img
-                      src={job.image}
-                      alt={job.title}
-                      className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A1929]/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4 flex items-center gap-2">
-                      <span className="bg-[#D4AF37] text-white text-[10px] font-bold uppercase px-2 py-1 rounded tracking-widest">
-                        {job.role}
-                      </span>
-                      <span className="bg-white/20 backdrop-blur-md text-white text-[10px] uppercase font-bold px-2 py-1 rounded tracking-tighter">
-                        Full-Time
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Body Content */}
-                  <div className="p-8 flex-grow flex flex-col">
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-[#0A1929] text-xl font-bold leading-tight group-hover:text-[#1E5A8E] transition-colors">
-                        {job.title}
-                      </h3>
-                    </div>
-
-                    <div className="space-y-3 mb-6">
-                      <div className="flex items-center gap-3 text-gray-500 text-sm">
-                        <MapPin className="w-4 h-4 text-[#D4AF37]" />
-                        <span>{job.location}, UK</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-gray-500 text-sm">
-                        <DollarSign className="w-4 h-4 text-[#D4AF37]" />
-                        <span className="font-semibold text-[#1E5A8E]">{job.salary}</span>
-                      </div>
-                      <div className="flex items-start gap-3 text-gray-400 text-xs">
-                        <Clock className="w-4 h-4 flex-shrink-0" />
-                        <span>{job.shift}</span>
-                      </div>
-                    </div>
-
-                    <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-2 italic">
-                      &quot;{job.description}&quot;
-                    </p>
-
-                    {/* Meta info */}
-                    <div className="bg-[#F8FAFC] p-4 rounded-xl mb-8 flex flex-col gap-2">
-                      <div className="flex items-center gap-2 text-[11px] font-bold text-[#1E5A8E] uppercase tracking-wider">
-                        <Briefcase className="w-3 h-3" /> Requirements:
-                      </div>
-                      <div className="text-gray-600 text-[13px] leading-tight font-medium">
-                        {job.requirements}
-                      </div>
-                    </div>
-
-                    {/* Actions */}
-                    <div className="mt-auto flex items-center gap-3">
-                      <button
-                        onClick={() => handleApply(job.id)}
-                        className="flex-grow bg-[#1E5A8E] hover:bg-[#0A1929] text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02] shadow-lg shadow-blue-500/10"
-                      >
-                        Apply Now <Mail className="w-4 h-4" />
-                      </button>
-                      <button className="w-12 h-12 border border-gray-200 rounded-lg flex items-center justify-center text-gray-400 hover:text-[#1E5A8E] hover:border-[#1E5A8E] transition-all">
-                        <ArrowRight className="w-5 h-5" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-gray-200">
-              <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Search className="w-10 h-10 text-gray-300" />
-              </div>
-              <h3 className="text-[#0A1929] text-2xl font-bold mb-2">No Vacancies Found</h3>
-              <p className="text-gray-500">Try adjusting your search or filter settings.</p>
-              <button
-                onClick={() => { setSearchTerm(""); setFilterRole("All"); }}
-                className="mt-6 text-[#1E5A8E] font-bold border-b-2 border-[#1E5A8E] hover:text-[#D4AF37] hover:border-[#D4AF37] transition-all"
-              >
-                Clear all filters
-              </button>
-            </div>
-          )}
-
+          <div className="w-24 h-1.5 bg-[#D4AF37] mx-auto rounded-full" />
         </div>
       </section>
 
@@ -329,37 +265,102 @@ export function Vacancies() {
 
             {/* Right Simulation Form */}
             <div className="lg:w-1/2 p-12 md:p-16 bg-[#1C2B3A] relative">
-              <div className="mb-10 flex items-center justify-between">
-                <h3 className="text-white text-xl font-bold">Quick Application</h3>
-                <span className="text-[#5DADE2] text-xs font-bold tracking-widest uppercase">Step 1 of 2</span>
-              </div>
-
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-white/40 text-xs font-bold uppercase tracking-widest ml-1">Full Name</label>
-                    <input type="text" className="w-full bg-[#0A1929] border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-[#D4AF37] transition-all" placeholder="John Doe" />
+              {isSuccess ? (
+                <div className="flex flex-col items-center justify-center text-center h-full animate-in fade-in zoom-in duration-500 min-h-[400px]">
+                  <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mb-6">
+                    <CheckCircle className="w-10 h-10 text-green-500" />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-white/40 text-xs font-bold uppercase tracking-widest ml-1">SIA License Number</label>
-                    <input type="text" className="w-full bg-[#0A1929] border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-[#D4AF37] transition-all" placeholder="1234 5678 9012" />
+                  <h3 className="text-white text-3xl font-bold mb-4">Application Successful!</h3>
+                  <p className="text-white/70 text-lg mb-8 leading-relaxed">
+                    Your CV has been submitted successfully to <br/>
+                    <span className="text-white font-bold">Zarkoon Security Limited</span>.
+                  </p>
+                  <button 
+                    onClick={() => setIsSuccess(false)}
+                    className="bg-[#1E5A8E] hover:bg-[#5DADE2] text-white px-8 py-3 rounded-xl font-bold italic tracking-widest uppercase transition-colors"
+                  >
+                    Submit Another
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="mb-10 flex items-center justify-between">
+                    <h3 className="text-white text-xl font-bold">Quick Application</h3>
+                    <span className="text-[#5DADE2] text-xs font-bold tracking-widest uppercase">Step 1 of 2</span>
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <label className="text-white/40 text-xs font-bold uppercase tracking-widest ml-1">Email Address</label>
-                  <input type="email" className="w-full bg-[#0A1929] border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-[#D4AF37] transition-all" placeholder="name@email.com" />
-                </div>
+                  <form className="space-y-6" onSubmit={handleFormSubmit}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-white/40 text-xs font-bold uppercase tracking-widest ml-1">Full Name *</label>
+                        <input 
+                          type="text" 
+                          value={fullName}
+                          onChange={(e) => { setFullName(e.target.value); setErrors(errors.filter(err => err !== 'fullName')); }}
+                          className={`w-full bg-[#0A1929] border ${errors.includes('fullName') ? 'border-red-500' : 'border-white/10'} rounded-lg p-4 text-white focus:outline-none focus:border-[#D4AF37] transition-all`} 
+                          placeholder="John Doe" 
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-white/40 text-xs font-bold uppercase tracking-widest ml-1">SIA License Number</label>
+                        <input 
+                          type="text" 
+                          value={siaNumber}
+                          onChange={(e) => setSiaNumber(e.target.value)}
+                          className="w-full bg-[#0A1929] border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-[#D4AF37] transition-all" 
+                          placeholder="1234 5678 9012" 
+                        />
+                      </div>
+                    </div>
 
-                <div className="h-40 border-2 border-dashed border-white/10 rounded-xl flex flex-col items-center justify-center hover:border-[#5DADE2] transition-colors group cursor-pointer">
-                  <Upload className="w-8 h-8 text-white/20 group-hover:text-[#5DADE2] mb-3 transition-colors" />
-                  <span className="text-white/40 group-hover:text-white transition-colors font-medium">Click to upload CV (PDF/DOC)</span>
-                </div>
+                    <div className="space-y-2">
+                      <label className="text-white/40 text-xs font-bold uppercase tracking-widest ml-1">Email Address *</label>
+                      <input 
+                        type="email" 
+                        value={email}
+                        onChange={(e) => { setEmail(e.target.value); setErrors(errors.filter(err => err !== 'email')); }}
+                        className={`w-full bg-[#0A1929] border ${errors.includes('email') ? 'border-red-500' : 'border-white/10'} rounded-lg p-4 text-white focus:outline-none focus:border-[#D4AF37] transition-all`} 
+                        placeholder="name@email.com" 
+                      />
+                    </div>
 
-                <button className="w-full bg-[#D4AF37] hover:bg-white text-[#0A1929] font-black py-4 rounded-xl uppercase tracking-widest flex items-center justify-center gap-3 transition-all">
-                  Submit Interest <Send className="w-5 h-5" />
-                </button>
-              </form>
+                    <label className={`block h-40 border-2 border-dashed ${errors.includes('cvFile') ? 'border-red-500 bg-red-500/5' : 'border-white/10 hover:border-[#5DADE2]'} rounded-xl flex flex-col items-center justify-center transition-colors group cursor-pointer relative overflow-hidden`}>
+                      <input 
+                        type="file" 
+                        accept=".pdf,.doc,.docx" 
+                        onChange={handleFileChange} 
+                        className="hidden" 
+                      />
+                      {cvFile ? (
+                        <>
+                          <CheckCircle className="w-8 h-8 text-green-500 mb-3" />
+                          <span className="text-white font-medium text-center px-4 overflow-hidden text-ellipsis w-[90%] whitespace-nowrap">{cvFile.name}</span>
+                          <span className="text-white/40 text-xs mt-1">{(cvFile.size / 1024 / 1024).toFixed(2)} MB</span>
+                        </>
+                      ) : (
+                        <>
+                          <Upload className={`w-8 h-8 ${errors.includes('cvFile') ? 'text-red-400' : 'text-white/20 group-hover:text-[#5DADE2]'} mb-3 transition-colors`} />
+                          <span className={`${errors.includes('cvFile') ? 'text-red-400' : 'text-white/40 group-hover:text-white'} transition-colors font-medium`}>
+                            {errors.includes('cvFile') ? 'CV Document Required *' : 'Click to upload CV (PDF/DOC)'}
+                          </span>
+                        </>
+                      )}
+                    </label>
+
+                    <button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="w-full bg-[#D4AF37] disabled:opacity-70 disabled:cursor-not-allowed hover:bg-white text-[#0A1929] font-black py-4 rounded-xl uppercase tracking-widest flex items-center justify-center gap-3 transition-all"
+                    >
+                      {isSubmitting ? (
+                        <>Processing <Loader2 className="w-5 h-5 animate-spin" /></>
+                      ) : (
+                        <>Submit Interest <Send className="w-5 h-5" /></>
+                      )}
+                    </button>
+                  </form>
+                </>
+              )}
             </div>
           </div>
         </div>

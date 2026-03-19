@@ -15,11 +15,10 @@ import { ConstructionGuarding } from "./pages/ConstructionGuarding";
 import { EventsFestivals } from "./pages/EventsFestivals";
 import { RetailSecurity } from "./pages/RetailSecurity";
 import { Accreditations } from "./pages/Accreditations";
-import { GenderPayGap } from "./pages/GenderPayGap";
-import { GenderPayGapReport } from "./pages/GenderPayGapReport";
-import { Policies } from "./pages/Policies";
 import { Vacancies } from "./pages/Vacancies";
-import { Training } from "./pages/Training";
+import { TrainingPortal } from "./pages/TrainingPortal";
+
+import { Policies } from "./pages/Policies";
 
 /** Shared layout: Header + page content + Footer */
 function MainLayout() {
@@ -38,9 +37,6 @@ export default function App() {
     <Router>
       <ScrollToTop />
       <Routes>
-        {/* ── Standalone clean-view (no Header / Footer) ── */}
-        <Route path="/gender-pay-gap" element={<GenderPayGap />} />
-        <Route path="/report/gender-pay-gap-2024" element={<GenderPayGapReport />} />
 
         {/* ── Main site layout ── */}
         <Route element={<MainLayout />}>
@@ -57,8 +53,8 @@ export default function App() {
           <Route path="/retail-security" element={<RetailSecurity />} />
           <Route path="/accreditations" element={<Accreditations />} />
           <Route path="/policies" element={<Policies />} />
-          <Route path="/careers/vacancies" element={<Vacancies />} />
-          <Route path="/careers/training" element={<Training />} />
+          <Route path="/careers" element={<Vacancies />} />
+          <Route path="/training-portal" element={<TrainingPortal />} />
         </Route>
       </Routes>
     </Router>

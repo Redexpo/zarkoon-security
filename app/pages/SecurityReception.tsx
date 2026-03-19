@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Phone, Mail } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Button } from "../components/ui/button";
@@ -37,12 +38,16 @@ export function SecurityReception() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Security Reception Quote requested:", formData);
-        alert("Thank you for your Security Reception request! We will provide a quote shortly.");
+        alert("Your message has been sent to Zarkoon Security Limited");
         setFormData({ name: "", email: "", phone: "", postCode: "", service: "", address: "", message: "" });
     };
 
     return (
         <div className="min-h-screen font-['Outfit'] bg-white">
+            <Helmet>
+                <title>Security Reception | Zarkoon Security Limited</title>
+                <meta name="description" content="Professional, welcoming, and secure reception security officers providing customer service and rigorous access control for your corporate premises." />
+            </Helmet>
             {/* Hero Section */}
             <section className="relative min-h-[550px] flex items-center justify-center overflow-hidden">
                 <img

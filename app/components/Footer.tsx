@@ -1,13 +1,12 @@
 import logoImage from "figma:asset/c13cca16d7f41b2233e632ec5f799ebb98dc1e40.png";
-import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function Footer() {
   const socialLinks = [
-    { name: "Facebook", icon: Facebook, url: "https://facebook.com/zarkoonsecurity" },
+    { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/company/zarkoon-security-limited" },
     { name: "Instagram", icon: Instagram, url: "https://instagram.com/zarkoonsecurity" },
-    { name: "Twitter", icon: Twitter, url: "https://twitter.com/zarkoonsecurity" },
-    { name: "Youtube", icon: Youtube, url: "https://youtube.com/@zarkoonsecurity" },
+    { name: "Facebook", icon: Facebook, url: "https://facebook.com/zarkoonsecurity" },
   ];
 
   return (
@@ -21,7 +20,7 @@ export function Footer() {
                 <img
                   src={logoImage}
                   alt="Zarkoon Security Limited"
-                  className="h-16 w-auto brightness-0 invert"
+                  className="h-16 md:h-20 w-auto object-contain"
                 />
               </Link>
             </div>
@@ -51,7 +50,6 @@ export function Footer() {
               <li><Link to="/retail-security" className="hover:text-[#5DADE2] hover:pl-2 inline-block transition-all duration-300">Retail Security</Link></li>
               <li><Link to="/accreditations" className="hover:text-[#5DADE2] hover:pl-2 inline-block transition-all duration-300">Accreditations</Link></li>
               <li><Link to="/policies" className="hover:text-[#5DADE2] hover:pl-2 inline-block transition-all duration-300">Policies</Link></li>
-              <li><a href="/gender-pay-gap" target="_blank" rel="noopener noreferrer" className="hover:text-[#5DADE2] hover:pl-2 inline-block transition-all duration-300">Gender Pay Gap Report</a></li>
             </ul>
           </div>
 
@@ -76,17 +74,17 @@ export function Footer() {
                 <p className="text-sm font-light text-gray-400">Address: Halsway Road, Hayes, UB3 3JT</p>
               </div>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-[#1E5A8E] rounded-lg flex items-center justify-center hover:bg-[#5DADE2] transition-all duration-300 hover:-translate-y-1 shadow-lg"
-                  aria-label={`Follow us on ${social.name}`}
+                  className="w-12 h-12 bg-[#FDFDFF] text-[#0A1929] rounded-xl flex items-center justify-center hover:bg-[#D4AF37] hover:text-[#FDFDFF] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_15px_-3px_rgba(212,175,55,0.4)] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] group"
+                  aria-label={`Follow us on ${social.name} | Zarkoon Security Limited`}
                 >
-                  <social.icon className="w-4 h-4" />
+                  <social.icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                 </a>
               ))}
             </div>

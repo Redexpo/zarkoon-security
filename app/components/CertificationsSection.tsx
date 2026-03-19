@@ -45,7 +45,7 @@ export function CertificationsSection() {
               href={cert.pdf}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center justify-center p-12 bg-gray-50 rounded-3xl border-2 border-transparent hover:border-[#1E5A8E]/20 hover:bg-white hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 text-center"
+              className="group flex flex-col items-center justify-center p-12 bg-white rounded-3xl border-2 border-transparent hover:border-[#1E5A8E]/20 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 text-center"
             >
               <div className="mb-8 w-full h-32 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
                 <img 

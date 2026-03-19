@@ -14,6 +14,7 @@ import {
    Lock,
    MessageSquare
 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Course Data
@@ -81,6 +82,10 @@ export function Training() {
 
    return (
       <div className="min-h-screen font-['Outfit'] bg-[#F4F6F9] pb-20">
+         <Helmet>
+            <title>Training | Zarkoon Security Limited</title>
+            <meta name="description" content="Certified training courses, SIA license top-up, and mandatory professional standards portal by Zarkoon Security Limited." />
+         </Helmet>
 
          {/* ══════════════════════════════════════════════════════════════════════
           TOP BANNER — Professional classroom / training vibe

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Shield, CheckCircle, Clock, MapPin, Phone, Mail, ChevronRight, Lock, Bell, ShieldAlert } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Button } from "../components/ui/button";
@@ -36,12 +37,16 @@ export function KeyHolding() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Key Holding Quote requested:", formData);
-        alert("Thank you for your Key Holding request! We will provide a quote shortly.");
+        alert("Your message has been sent to Zarkoon Security Limited");
         setFormData({ name: "", email: "", phone: "", postCode: "", service: "", address: "", message: "" });
     };
 
     return (
         <div className="min-h-screen font-['Outfit'] bg-white">
+            <Helmet>
+                <title>Key Holding & Alarm Response | Zarkoon Security Limited</title>
+                <meta name="description" content="Fast, reliable key holding and rapid alarm response services to protect your UK commercial properties 24/7." />
+            </Helmet>
             {/* Hero Section */}
             <section className="relative min-h-[550px] flex items-center justify-center overflow-hidden">
                 <img

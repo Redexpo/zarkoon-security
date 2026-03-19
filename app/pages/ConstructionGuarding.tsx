@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { ChevronRight } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import heroImage from "../../assets/construction-site-security-scaled.jpg";
 
 export function ConstructionGuarding() {
 
     return (
         <div className="min-h-screen font-['Outfit'] bg-white">
+            <Helmet>
+                <title>Construction Guarding | Zarkoon Security Limited</title>
+                <meta name="description" content="Specialized construction and estate guarding services providing a robust physical deterrent to ensure your assets and property remain secure 24/7." />
+            </Helmet>
             {/* Hero Section */}
             <section className="relative min-h-[550px] flex items-center justify-center overflow-hidden">
                 <img

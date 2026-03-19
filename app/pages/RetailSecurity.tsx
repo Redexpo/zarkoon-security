@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { ChevronRight } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import sideImageLarge from "../../assets/25e965_2f72110096454ad6ab8d1f9df53a99a2~mv2.avif";
 
 // Placeholders based on reference
@@ -11,6 +12,10 @@ export function RetailSecurity() {
 
     return (
         <div className="min-h-screen font-['Outfit'] bg-white">
+            <Helmet>
+                <title>Retail Security | Zarkoon Security Limited</title>
+                <meta name="description" content="Bespoke retail security solutions, loss prevention, and conflict management to protect your brand and customers." />
+            </Helmet>
             {/* Hero Section */}
             <section className="relative min-h-[550px] flex items-center justify-center overflow-hidden">
                 <img

@@ -1,4 +1,5 @@
 import { Shield, Award, Users, Clock } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const heroImage = "https://images.unsplash.com/photo-1685300996383-343b7fe0b9fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWN1cml0eSUyMGd1YXJkJTIwcHJvZmVzc2lvbmFsJTIwYnVpbGRpbmd8ZW58MXx8fHwxNzcyNjM3MjI0fDA&ixlib=rb-4.1.0&q=80&w=1080";
 const securityOfficerImage = "https://images.unsplash.com/photo-1552622594-9a37efeec618?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWN1cml0eSUyMG9mZmljZXIlMjB1bmlmb3JtJTIwY29ycG9yYXRlfGVufDF8fHx8MTc3MjcwMTUxMHww&ixlib=rb-4.1.0&q=80&w=1080";
@@ -7,6 +8,10 @@ const teamImage = "https://images.unsplash.com/photo-1652148555073-4b1d2ecd664c?
 export function AboutUs() {
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>About Us | Zarkoon Security Limited</title>
+        <meta name="description" content="Learn about Zarkoon Security Limited, our commitment to excellence, modern slavery statement, and why we are the leading security provider in the UK." />
+      </Helmet>
       {/* Hero Section */}
       <section
         className="relative h-[400px] flex items-center justify-center bg-cover bg-center"

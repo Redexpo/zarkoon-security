@@ -28,19 +28,13 @@ const navLinks: NavItem[] = [
     dropdown: [
       { name: "Construction & Estate Guarding", path: "/construction-guarding" },
       { name: "Events & Festivals", path: "/events-festivals" },
-      { name: "Retail Security", path: "/retail-security" },
-      { name: "Gender Pay Gap Report", path: "/report/gender-pay-gap-2024", target: "_blank" },
+      { name: "Policies", path: "/policies" }
     ]
   },
   { name: "Accreditations", path: "/accreditations" },
   { name: "About Us", path: "/about" },
-  {
-    name: "Career",
-    dropdown: [
-      { name: "Current Vacancies", path: "/careers/vacancies" },
-      { name: "Training Portal", path: "/careers/training" },
-    ]
-  },
+  { name: "Careers", path: "/careers" },
+  { name: "Training Portal", path: "/training-portal" },
   { name: "Contact us", path: "/contact-us" },
 ];
 

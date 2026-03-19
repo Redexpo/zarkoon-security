@@ -12,7 +12,7 @@ export function CareerSection() {
         <p className="text-gray-600 text-lg font-light mb-12 max-w-3xl mx-auto leading-relaxed">
           Check out our current job openings and be part of our esteemed security force. Join a team committed to excellence and professional growth.
         </p>
-        <Link to="/careers/vacancies">
+        <Link to="/careers">
           <button className="bg-gradient-to-r from-[#1E5A8E] to-[#163D5E] text-white px-12 py-4 text-base font-bold tracking-wide hover:from-[#5DADE2] hover:to-[#1E5A8E] transition-all duration-300 shadow-2xl hover:shadow-3xl">
             Check It Out
           </button>

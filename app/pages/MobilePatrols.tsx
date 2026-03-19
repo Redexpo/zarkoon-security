@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ShieldAlert, CheckCircle, Clock, MapPin, Phone, Mail, ChevronRight, Eye, Shield, Bus, Target } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Button } from "../components/ui/button";
@@ -34,12 +35,16 @@ export function MobilePatrols() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Mobile Patrols Quote requested:", formData);
-        alert("Thank you for your Mobile Patrols request! We will provide a quote shortly.");
+        alert("Your message has been sent to Zarkoon Security Limited");
         setFormData({ name: "", email: "", phone: "", postCode: "", service: "", address: "", message: "" });
     };
 
     return (
         <div className="min-h-screen font-['Outfit'] bg-white">
+            <Helmet>
+                <title>Mobile Patrols | Zarkoon Security Limited</title>
+                <meta name="description" content="Randomized inspections and high-visibility mobile patrol deterrents to secure your premises. Rapid response tailored precisely to your timeline." />
+            </Helmet>
             {/* Hero Section */}
             <section className="relative min-h-[550px] flex items-center justify-center overflow-hidden">
                 <img

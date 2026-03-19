@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Youtube, Shield, Calendar, Music, Building2, CheckCircle, Info } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Shield, Calendar, Music, Building2, CheckCircle, Info } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import heroImage from "../../assets/event-security-500x500.png";
 import detailsImage from "../../assets/event-security-details.png";
 import festivalImg from "../../assets/festival-security-card.png";
@@ -39,7 +40,7 @@ export function EventSecurity() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Quote requested:", formData);
-        alert("Thank you for your Event Security request! We will provide a quote shortly.");
+        alert("Your message has been sent to Zarkoon Security Limited");
         setFormData({ name: "", email: "", phone: "", postCode: "", service: "", address: "", message: "" });
     };
 
@@ -66,6 +67,10 @@ export function EventSecurity() {
 
     return (
         <div className="min-h-screen font-['Outfit'] bg-white">
+            <Helmet>
+                <title>Event Security | Zarkoon Security Limited</title>
+                <meta name="description" content="Expert event security and crowd management services ensuring safety for festivals, corporate events, and concerts." />
+            </Helmet>
             {/* Unique Hero Banner */}
             <section
                 className="relative h-[550px] flex items-center justify-center bg-cover bg-center overflow-hidden"

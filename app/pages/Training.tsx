@@ -330,12 +330,41 @@ export function Training() {
                         </button>
                      </div>
 
-                     <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); window.location.href = `mailto:training@zarkoonsecurity.co.uk?subject=Registration Interest: ${selectedCourse}`; setSelectedCourse(null); }}>
+                     <form className="space-y-6" onSubmit={async (e) => {
+                      e.preventDefault();
+                      const form = e.currentTarget;
+                      const fd = new FormData(form);
+                      const payload = {
+                        access_key: "af723e95-d9b7-4f0d-bb63-2f9abb2aa3fa",
+                        subject: "New Training Registration - Zarkoon Security",
+                        from_name: "Training Registration Form",
+                        Course: selectedCourse,
+                        Name: fd.get("name") as string,
+                        Phone: fd.get("phone") as string,
+                        Email: fd.get("email") as string,
+                      };
+                      try {
+                        const response = await fetch("https://api.web3forms.com/submit", {
+                          method: "POST",
+                          body: JSON.stringify(payload),
+                          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                        });
+                        const data = await response.json();
+                        if (data.success) {
+                           alert("Thank you! Your message has been received. We will get back to you shortly.");
+                           setSelectedCourse(null);
+                        } else {
+                           alert("Oops! There was a problem submitting your form: " + (data.message || "Unknown error"));
+                        }
+                      } catch {
+                        alert("Oops! There was a problem submitting your form.");
+                      }
+                   }}>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                           <input type="text" placeholder="Your Full Name" className="w-full bg-[#0A1929] border border-white/5 rounded-xl p-4 text-white focus:outline-none focus:border-[#D4AF37]" required />
-                           <input type="tel" placeholder="Contact Number" className="w-full bg-[#0A1929] border border-white/5 rounded-xl p-4 text-white focus:outline-none focus:border-[#D4AF37]" required />
+                           <input type="text" name="name" placeholder="Your Full Name" className="w-full bg-[#0A1929] border border-white/5 rounded-xl p-4 text-white focus:outline-none focus:border-[#D4AF37]" required />
+                           <input type="tel" name="phone" placeholder="Contact Number" className="w-full bg-[#0A1929] border border-white/5 rounded-xl p-4 text-white focus:outline-none focus:border-[#D4AF37]" required />
                         </div>
-                        <input type="email" placeholder="Email Address" className="w-full bg-[#0A1929] border border-white/5 rounded-xl p-4 text-white focus:outline-none focus:border-[#D4AF37]" required />
+                        <input type="email" name="email" placeholder="Email Address" className="w-full bg-[#0A1929] border border-white/5 rounded-xl p-4 text-white focus:outline-none focus:border-[#D4AF37]" required />
 
                         <button
                            type="submit"

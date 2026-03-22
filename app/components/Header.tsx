@@ -69,47 +69,47 @@ export function Header() {
 
   return (
     <header className="bg-white shadow-sm font-['Outfit'] relative z-50">
-      {/* Major Overhaul: Magnified White Header - Logo & Contacts Only */}
-      <div className="bg-white text-[#0A1929] py-6 md:py-8 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10 md:gap-12 relative">
-          {/* Left Side: Magnified Logo */}
+      {/* Scaled-down Centrally Aligned White Header - Logo & Contacts */}
+      <div className="bg-white text-[#0A1929] py-4 md:py-6 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-center items-center gap-12 md:gap-20 lg:gap-32 relative">
+          {/* Left Side: Scaled-down Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 transition-transform hover:scale-105 duration-300">
               <img
                 src={logoImage}
                 alt="Zarkoon Security Limited"
-                className="h-16 md:h-20 lg:h-24 w-auto drop-shadow-sm"
+                className="h-12 md:h-14 lg:h-16 w-auto drop-shadow-sm"
               />
             </Link>
           </div>
 
-          {/* Right Side: Magnified Contact Info Columns */}
-          <div className="flex flex-col sm:flex-row items-center gap-10 md:gap-16 lg:gap-24">
-            {/* Phone Column - Magnified */}
-            <div className="flex items-center gap-4 group">
-              <div className="w-12 h-12 rounded-full border-2 border-gray-100 flex items-center justify-center transition-all duration-300 group-hover:border-[#1E5A8E] group-hover:bg-gray-50 shadow-sm">
-                <Phone className="w-5 h-5 text-[#1E5A8E]" />
+          {/* Right Side: Scaled-down Contact Info Columns */}
+          <div className="flex flex-col sm:flex-row items-center gap-8 md:gap-12 lg:gap-16">
+            {/* Phone Column - Scaled Down */}
+            <div className="flex items-center gap-3 group">
+              <div className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center transition-all duration-300 group-hover:border-[#1E5A8E] group-hover:bg-gray-50 shadow-sm">
+                <Phone className="w-4 h-4 text-[#1E5A8E]" />
               </div>
               <div>
-                <p className="text-[11px] md:text-xs font-black text-[#1E5A8E] uppercase tracking-[0.15em] leading-none mb-2">
+                <p className="text-[10px] font-black text-[#1E5A8E] uppercase tracking-[0.15em] mb-1 leading-none">
                   Open 24 Hours
                 </p>
-                <a href="tel:+447488372418" className="text-xl md:text-2xl font-black text-[#0A1929] hover:text-[#1E5A8E] transition-all duration-300 leading-none tracking-tight">
+                <a href="tel:+447488372418" className="text-lg md:text-xl font-black text-[#0A1929] hover:text-[#1E5A8E] transition-all duration-300 leading-none tracking-tight">
                   07488 372418
                 </a>
               </div>
             </div>
 
-            {/* Email Column - Magnified */}
-            <div className="flex items-center gap-4 group">
-              <div className="w-12 h-12 rounded-full border-2 border-gray-100 flex items-center justify-center transition-all duration-300 group-hover:border-[#1E5A8E] group-hover:bg-gray-50 shadow-sm">
-                <Mail className="w-5 h-5 text-[#1E5A8E]" />
+            {/* Email Column - Scaled Down */}
+            <div className="flex items-center gap-3 group">
+              <div className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center transition-all duration-300 group-hover:border-[#1E5A8E] group-hover:bg-gray-50 shadow-sm">
+                <Mail className="w-4 h-4 text-[#1E5A8E]" />
               </div>
               <div>
-                <p className="text-[11px] md:text-xs font-black text-[#1E5A8E] uppercase tracking-[0.15em] leading-none mb-2">
+                <p className="text-[10px] font-black text-[#1E5A8E] uppercase tracking-[0.15em] mb-1 leading-none">
                   7 Days a Week
                 </p>
-                <a href="mailto:info@zarkoonsecurity.co.uk" className="text-lg md:text-xl font-bold text-[#0A1929] hover:text-[#1E5A8E] transition-all duration-300 leading-none lowercase tracking-tight">
+                <a href="mailto:info@zarkoonsecurity.co.uk" className="text-base md:text-lg font-bold text-[#0A1929] hover:text-[#1E5A8E] transition-all duration-300 leading-none lowercase tracking-tight">
                   info@zarkoonsecurity.co.uk
                 </a>
               </div>

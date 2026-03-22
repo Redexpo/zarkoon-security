@@ -34,11 +34,36 @@ export function KeyHolding() {
         }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Key Holding Quote requested:", formData);
-        alert("Your message has been sent to Zarkoon Security Limited");
-        setFormData({ name: "", email: "", phone: "", postCode: "", service: "", address: "", message: "" });
+        const payload = {
+            access_key: "af723e95-d9b7-4f0d-bb63-2f9abb2aa3fa",
+            subject: "New Key Holding Quote Request - Zarkoon Security",
+            from_name: "Key Holding Quote Form",
+            Name: formData.name,
+            Email: formData.email,
+            Phone: formData.phone,
+            PostCode: formData.postCode,
+            Service: formData.service,
+            Address: formData.address,
+            Message: formData.message,
+        };
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            });
+            const data = await response.json();
+            if (data.success) {
+                alert("Thank you! Your message has been received. We will get back to you shortly.");
+                setFormData({ name: "", email: "", phone: "", postCode: "", service: "", address: "", message: "" });
+            } else {
+                alert("Oops! There was a problem submitting your form: " + (data.message || "Unknown error"));
+            }
+        } catch {
+            alert("Oops! There was a problem submitting your form.");
+        }
     };
 
     return (

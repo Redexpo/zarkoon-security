@@ -8,27 +8,44 @@ import { Button } from "../components/ui/button";
 const heroImage = "https://images.unsplash.com/photo-1768796365086-a030a51d10b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWN1cml0eSUyMHBlcnNvbm5lbCUyMHByb2Zlc3Npb25hbCUyMG91dGRvb3J8ZW58MXx8fHwxNzcyNzAxNTEwfDA&ixlib=rb-4.1.0&q=80&w=1080";
 
 export function ContactUs() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+  const [result, setResult] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    // Allow only numbers and the + symbol
-    if (/^[0-9+]*$/.test(value)) {
-      setFormData({ ...formData, phone: value });
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setResult(null);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const object = Object.fromEntries(data.entries());
+
+    // Web3Forms config
+    object.access_key = "af723e95-d9b7-4f0d-bb63-2f9abb2aa3fa";
+    object.subject = "New Contact Message - Zarkoon Security";
+    object.from_name = "Contact Us Page";
+
+    const json = JSON.stringify(object);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: json,
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setResult({ type: "success", message: "Thank you! Your message has been received. We will get back to you shortly." });
+        form.reset();
+      } else {
+        setResult({ type: "error", message: "Oops! There was a problem submitting your form: " + (data.message || "Unknown error") });
+      }
+    } catch {
+      setResult({ type: "error", message: "Oops! There was a problem submitting your form." });
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Your message has been sent to Zarkoon Security Limited");
-    setFormData({ name: "", email: "", phone: "", message: "" });
-  };
 
   const socialLinks = [
     { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/company/zarkoon-security-limited" },
@@ -57,7 +74,7 @@ export function ContactUs() {
       {/* NEW ELEGANT 4-COLUMN CONTACT CARDS SECTION */}
       <section className="py-20 bg-[#F8F9FA] relative">
         <div className="absolute inset-0 opacity-30 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:20px_20px]"></div>
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <span className="bg-[#0A1929] text-[#D4AF37] px-6 py-2 text-sm font-bold tracking-widest uppercase mb-4 inline-block shadow-lg rounded-full border border-[#D4AF37]/30">
@@ -198,7 +215,10 @@ export function ContactUs() {
         <div className="bg-gradient-to-br from-[#E8F4F8] to-white p-12 lg:p-16 flex items-center">
           <div className="w-full max-w-lg mx-auto">
             <h2 className="text-3xl font-bold text-[#0A1929] mb-8">Send us a message</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Name Field */}
                 <div className="space-y-2">
@@ -207,9 +227,8 @@ export function ContactUs() {
                   </label>
                   <Input
                     id="name"
+                    name="Name"
                     type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
                     placeholder="E.g. John Doe"
                   />
@@ -222,9 +241,8 @@ export function ContactUs() {
                   </label>
                   <Input
                     id="email"
+                    name="Email"
                     type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
                     placeholder="E.g. john@example.com"
                   />
@@ -238,9 +256,8 @@ export function ContactUs() {
                 </label>
                 <Input
                   id="phone"
+                  name="Phone"
                   type="tel"
-                  value={formData.phone}
-                  onChange={handlePhoneChange}
                   required
                   placeholder="E.g. +44 7488 372418"
                 />
@@ -253,8 +270,7 @@ export function ContactUs() {
                 </label>
                 <Textarea
                   id="message"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  name="Message"
                   required
                   placeholder="How can we help you today?"
                 />
@@ -273,6 +289,13 @@ export function ContactUs() {
               >
                 Send Message
               </Button>
+
+              {/* Result Message */}
+              {result && (
+                <p className={`text-sm font-semibold text-center mt-2 ${result.type === "success" ? "text-green-600" : "text-red-600"}`}>
+                  {result.message}
+                </p>
+              )}
             </form>
           </div>
         </div>

@@ -116,7 +116,7 @@ export function Vacancies() {
     setCvFile(file);
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors: string[] = [];
     if (!fullName.trim()) newErrors.push("fullName");
@@ -131,15 +131,38 @@ export function Vacancies() {
     setErrors([]);
     setIsSubmitting(true);
 
-    // Simulate reliable upload flow
-    setTimeout(() => {
+    const payload = {
+      access_key: "af723e95-d9b7-4f0d-bb63-2f9abb2aa3fa",
+      subject: "New Job Application - Zarkoon Security",
+      from_name: "Vacancies Application Form",
+      Position: selectedJob || "General Application",
+      Name: fullName,
+      SIA_Number: siaNumber,
+      Email: email,
+      CV_File: cvFile ? cvFile.name : "Not provided",
+    };
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      });
       setIsSubmitting(false);
-      setIsSuccess(true);
-      setFullName("");
-      setSiaNumber("");
-      setEmail("");
-      setCvFile(null);
-    }, 1800);
+      const data = await response.json();
+      if (data.success) {
+        setIsSuccess(true);
+        setFullName("");
+        setSiaNumber("");
+        setEmail("");
+        setCvFile(null);
+      } else {
+        alert("Oops! There was a problem submitting your application: " + (data.message || "Unknown error"));
+      }
+    } catch {
+      setIsSubmitting(false);
+      alert("Oops! There was a problem submitting your application.");
+    }
   };
 
   // Filter logic

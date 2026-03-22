@@ -96,8 +96,8 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800/50 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-            <p className="text-[10px] md:text-xs font-light text-gray-400 tracking-wide">
-              Registered In England And Wales, Company Number: 09761794
+            <p className="text-[10px] md:text-xs font-light text-gray-300 tracking-wide">
+              Registered In England And Wales, Certificate Number: 80968511-01-RKG6
             </p>
 
             <p className="text-[10px] md:text-xs font-light text-gray-500 tracking-wider uppercase">

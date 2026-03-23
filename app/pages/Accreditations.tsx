@@ -17,7 +17,11 @@ const heroImage =
 const accreditations = [
   { imgSrc: siaLogo, name: "SIA Approved" },
   { imgSrc: chasLogo, name: "CHAS Accredited" },
-  { imgSrc: icoLogo, name: "ICO Information" },
+  { 
+    imgSrc: icoLogo, 
+    name: "ICO Information", 
+    href: "/assets/certifications/ICO Registration Certificate.pdf" 
+  },
   { imgSrc: socialValueLogo, name: "Social Value Quality" },
   { imgSrc: nasduLogo, name: "NASDU Member" },
   { imgSrc: safeContractorLogo, name: "SafeContractor Approved" }
@@ -88,20 +92,40 @@ export function Accreditations() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {accreditations.map((item, idx) => (
               <div key={idx}>
-                <div
-                  className="bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 p-10 flex flex-col items-center group border border-gray-100 h-full w-full"
-                >
-                  <div className="h-32 w-full flex items-center justify-center mb-6">
-                    <img 
-                      src={item.imgSrc} 
-                      alt={item.name}
-                      className="max-w-full max-h-full object-contain"
-                    />
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 p-10 flex flex-col items-center group border border-gray-100 h-full w-full cursor-pointer"
+                  >
+                    <div className="h-32 w-full flex items-center justify-center mb-6">
+                      <img
+                        src={item.imgSrc}
+                        alt={item.name}
+                        className="max-w-full max-h-full object-contain"
+                      />
+                    </div>
+                    <h3 className="text-[#0A1929] text-xl font-bold tracking-tight text-center">
+                      {item.name}
+                    </h3>
+                  </a>
+                ) : (
+                  <div
+                    className="bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 p-10 flex flex-col items-center group border border-gray-100 h-full w-full"
+                  >
+                    <div className="h-32 w-full flex items-center justify-center mb-6">
+                      <img
+                        src={item.imgSrc}
+                        alt={item.name}
+                        className="max-w-full max-h-full object-contain"
+                      />
+                    </div>
+                    <h3 className="text-[#0A1929] text-xl font-bold tracking-tight text-center">
+                      {item.name}
+                    </h3>
                   </div>
-                  <h3 className="text-[#0A1929] text-xl font-bold tracking-tight text-center">
-                    {item.name}
-                  </h3>
-                </div>
+                )}
               </div>
             ))}
           </div>

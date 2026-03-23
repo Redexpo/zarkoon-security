@@ -254,7 +254,7 @@ export function KeyHolding() {
                                             value={formData.phone}
                                             onChange={handlePhoneChange}
                                             required
-                                            placeholder="+44"
+                                            placeholder="07488 372418"
                                             className="bg-white border-2 border-[#0A1929]/50 h-14 focus:border-[#5DADE2] text-[#0A1929] rounded-2xl"
                                         />
                                     </div>
@@ -330,13 +330,13 @@ export function KeyHolding() {
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <h2 className="text-white text-5xl font-bold mb-10 tracking-tighter">Ready to secure your peace of mind?</h2>
                     <div className="flex flex-col md:flex-row justify-center gap-10">
-                        <a href="tel:+447466493229" className="flex items-center justify-center gap-4 bg-white text-[#1E5A8E] px-12 py-6 rounded-3xl font-black text-xl shadow-2xl hover:bg-gray-100 transition-all transform hover:-translate-y-2">
+                        <a href="tel:07488372418" className="flex items-center justify-center gap-4 bg-white text-[#1E5A8E] px-12 py-6 rounded-3xl font-black text-xl shadow-2xl hover:bg-gray-100 transition-all transform hover:-translate-y-2">
                             <Phone className="w-8 h-8" />
-                            07466493229
+                            07488 372418
                         </a>
-                        <a href="mailto:info@zarkoonsecurity.co.uk" className="flex items-center justify-center gap-4 bg-transparent border-4 border-white text-white px-12 py-6 rounded-3xl font-black text-xl hover:bg-white hover:text-[#1E5A8E] transition-all transform hover:-translate-y-2">
+                        <a href="mailto:sales@zarkoonsecurity.co.uk" className="flex items-center justify-center gap-4 bg-transparent border-4 border-white text-white px-12 py-6 rounded-3xl font-black text-xl hover:bg-white hover:text-[#1E5A8E] transition-all transform hover:-translate-y-2">
                             <Mail className="w-8 h-8" />
-                            info@zarkoonsecurity.co.uk
+                            sales@zarkoonsecurity.co.uk
                         </a>
                     </div>
                 </div>

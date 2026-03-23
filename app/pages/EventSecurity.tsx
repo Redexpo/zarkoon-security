@@ -93,8 +93,8 @@ export function EventSecurity() {
     return (
         <div className="min-h-screen font-['Outfit'] bg-white">
             <Helmet>
-                <title>Event Security | Zarkoon Security Limited</title>
-                <meta name="description" content="Expert event security and crowd management services ensuring safety for festivals, corporate events, and concerts." />
+                <title>Event Security & Crowd Management | Zarkoon Security Limited</title>
+                <meta name="description" content="Expert event security and professional crowd management services for festivals, corporate events, and concerts. Ensuring safety and peace of mind." />
             </Helmet>
             {/* Unique Hero Banner */}
             <section
@@ -271,7 +271,7 @@ export function EventSecurity() {
                                             value={formData.phone}
                                             onChange={handlePhoneChange}
                                             required
-                                            placeholder="+44"
+                                            placeholder="07488 372418"
                                             className="bg-white border-2 border-[#0A1929]/50 h-14 focus:border-[#5DADE2] text-[#0A1929] rounded-2xl"
                                         />
                                     </div>

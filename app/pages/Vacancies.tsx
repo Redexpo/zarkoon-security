@@ -181,8 +181,8 @@ export function Vacancies() {
   return (
     <div className="min-h-screen font-['Outfit'] bg-[#F4F6F9] pb-20">
       <Helmet>
-        <title>Careers | Zarkoon Security Limited</title>
-        <meta name="description" content="Join the Zarkoon Security Limited team. We are always looking for dedicated, licensed professionals." />
+        <title>Careers & Job Opportunities | Zarkoon Security Limited</title>
+        <meta name="description" content="Join the Zarkoon Security Limited team. We are always looking for dedicated, SIA-licensed professionals to join our elite security force in the UK." />
       </Helmet>
 
       {/* ── Hero Section ── */}

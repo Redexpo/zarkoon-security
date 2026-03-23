@@ -27,8 +27,8 @@ export function Accreditations() {
   return (
     <div className="min-h-screen font-['Outfit'] bg-white">
       <Helmet>
-        <title>Accreditations | Zarkoon Security Limited</title>
-        <meta name="description" content="Zarkoon Security holds official certifications demonstrating our commitment to the highest security standards." />
+        <title>Official Accreditations & Certifications | Zarkoon Security Limited</title>
+        <meta name="description" content="Zarkoon Security holds official certifications from SIA, CHAS, ICO, and more, demonstrating our commitment to the highest industry security standards." />
       </Helmet>
       
       {/* ── Hero Section ── */}
@@ -86,9 +86,8 @@ export function Accreditations() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {accreditations.map((item, idx) => {
-              const isICO = item.imgSrc === icoLogo;
-              const content = (
+            {accreditations.map((item, idx) => (
+              <div key={idx}>
                 <div
                   className="bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 p-10 flex flex-col items-center group border border-gray-100 h-full w-full"
                 >
@@ -103,23 +102,8 @@ export function Accreditations() {
                     {item.name}
                   </h3>
                 </div>
-              );
-
-              return isICO ? (
-                <a 
-                  key={idx} 
-                  href="https://find-and-update.company-information.service.gov.uk/company/09761794" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  {content}
-                </a>
-              ) : (
-                <div key={idx}>
-                  {content}
-                </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
 
           {/* CTA */}

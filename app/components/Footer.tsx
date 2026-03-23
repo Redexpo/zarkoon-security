@@ -62,7 +62,7 @@ export function Footer() {
               <div className="flex items-start gap-3 group">
                 <Phone className="w-4 h-4 text-[#5DADE2] flex-shrink-0 mt-1 transition-transform group-hover:scale-110" />
                 <div className="text-sm font-light">
-                  <p className="text-gray-400">Phone: <a href="tel:+447488372418" className="hover:text-[#5DADE2] transition-colors font-medium">07488 372418</a></p>
+                  <p className="text-gray-400">Phone: <a href="tel:07488372418" className="hover:text-[#5DADE2] transition-colors font-medium">07488 372418</a></p>
                 </div>
               </div>
               <div className="flex items-start gap-3 group">

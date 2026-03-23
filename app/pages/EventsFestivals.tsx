@@ -12,8 +12,8 @@ export function EventsFestivals() {
     return (
         <div className="min-h-screen font-['Outfit'] bg-white">
             <Helmet>
-                <title>Events & Festivals Security | Zarkoon Security Limited</title>
-                <meta name="description" content="Comprehensive safety solutions and crowd management for events and festivals ensuring a safe and memorable experience." />
+                <title>Safe Events & Festival Security Solutions | Zarkoon Security Limited</title>
+                <meta name="description" content="Comprehensive safety solutions and crowd management for events and festivals. Ensuring a safe, secure, and memorable experience for all attendees across the UK." />
             </Helmet>
             {/* Hero Section */}
             <section className="relative min-h-[550px] flex items-center justify-center overflow-hidden">

@@ -17,13 +17,66 @@ import { RetailSecurity } from "./pages/RetailSecurity";
 import { Accreditations } from "./pages/Accreditations";
 import { Vacancies } from "./pages/Vacancies";
 import { TrainingPortal } from "./pages/TrainingPortal";
+const navigationSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "#primary-navigation",
+      "name": "Home",
+      "url": "https://www.zarkoon-security.co.uk/"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "#primary-navigation",
+      "name": "About Us",
+      "url": "https://www.zarkoon-security.co.uk/about"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "#primary-navigation",
+      "name": "Contact Us",
+      "url": "https://www.zarkoon-security.co.uk/contact-us"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "#primary-navigation",
+      "name": "Manned Guarding",
+      "url": "https://www.zarkoon-security.co.uk/manned-guarding"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "#primary-navigation",
+      "name": "Mobile Patrols",
+      "url": "https://www.zarkoon-security.co.uk/mobile-patrols"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "#primary-navigation",
+      "name": "Accreditations",
+      "url": "https://www.zarkoon-security.co.uk/accreditations"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "#primary-navigation",
+      "name": "Careers",
+      "url": "https://www.zarkoon-security.co.uk/careers"
+    }
+  ]
+};
 
 import { Policies } from "./pages/Policies";
+import { Helmet } from "react-helmet-async";
 
 /** Shared layout: Header + page content + Footer */
 function MainLayout() {
   return (
     <div className="min-h-screen bg-white">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(navigationSchema)}
+        </script>
+      </Helmet>
       <Header />
       <Outlet />
       <Footer />

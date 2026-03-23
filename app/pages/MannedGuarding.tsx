@@ -72,8 +72,8 @@ export function MannedGuarding() {
     return (
         <div className="min-h-screen font-['Outfit'] bg-gray-50">
             <Helmet>
-                <title>Manned Guarding | Zarkoon Security Limited</title>
-                <meta name="description" content="Professional SIA-licensed manned guarding security solutions for businesses and properties across the UK." />
+                <title>Professional Manned Guarding Services | Zarkoon Security Limited</title>
+                <meta name="description" content="Elite SIA-licensed manned guarding security solutions for businesses, retail, and construction sites across the UK. Professional protection you can trust." />
             </Helmet>
             {/* Unique Hero Banner */}
             <section
@@ -183,7 +183,7 @@ export function MannedGuarding() {
                                         value={formData.phone}
                                         onChange={handlePhoneChange}
                                         required
-                                        placeholder="+44"
+                                        placeholder="07488 372418"
                                         className="bg-white border-2 border-gray-400 focus:border-[#5DADE2] text-[#0A1929]"
                                     />
                                 </div>
@@ -261,13 +261,13 @@ export function MannedGuarding() {
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <h2 className="text-white text-4xl font-bold mb-8">Ready to secure your premises?</h2>
                     <div className="flex flex-col md:flex-row justify-center gap-6">
-                        <a href="tel:+447466493229" className="flex items-center justify-center gap-3 bg-white text-[#1E5A8E] px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-gray-100 transition-colors">
+                        <a href="tel:07488372418" className="flex items-center justify-center gap-3 bg-white text-[#1E5A8E] px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-gray-100 transition-colors">
                             <Phone className="w-5 h-5" />
-                            07466493229
+                            07488 372418
                         </a>
-                        <a href="mailto:info@zarkoonsecurity.co.uk" className="flex items-center justify-center gap-3 bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1E5A8E] transition-all">
+                        <a href="mailto:sales@zarkoonsecurity.co.uk" className="flex items-center justify-center gap-3 bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1E5A8E] transition-all">
                             <Mail className="w-5 h-5" />
-                            info@zarkoonsecurity.co.uk
+                            sales@zarkoonsecurity.co.uk
                         </a>
                     </div>
                 </div>

@@ -91,11 +91,11 @@ export function ContactUs() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
             {/* Card 1: Phone */}
             <div className="bg-white p-10 text-center rounded-xl border border-gray-200 border-b-[4px] border-b-[#5DADE2] shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-[5px] flex flex-col items-center justify-start h-full">
-              <a href="tel:+447488372418" className="group inline-flex items-center justify-center w-16 h-16 bg-[#F8F9FA] rounded-full hover:bg-[#5DADE2]/10 transition-colors duration-300 mb-6 focus:outline-none focus:ring-2 focus:ring-[#5DADE2] focus:ring-offset-2">
+              <a href="tel:07488372418" className="group inline-flex items-center justify-center w-16 h-16 bg-[#F8F9FA] rounded-full hover:bg-[#5DADE2]/10 transition-colors duration-300 mb-6 focus:outline-none focus:ring-2 focus:ring-[#5DADE2] focus:ring-offset-2">
                 <Phone className="w-7 h-7 text-[#5DADE2] group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
               </a>
               <h3 className="text-2xl font-bold text-[#0A1929] mb-4">Phone Number</h3>
-              <a href="tel:+447488372418" className="text-gray-600 font-semibold hover:text-[#5DADE2] hover:underline decoration-2 underline-offset-4 transition-all duration-300 text-lg focus:outline-none focus:text-[#5DADE2]">
+              <a href="tel:07488372418" className="text-gray-600 font-semibold hover:text-[#5DADE2] hover:underline decoration-2 underline-offset-4 transition-all duration-300 text-lg focus:outline-none focus:text-[#5DADE2]">
                 07488 372418
               </a>
             </div>
@@ -148,7 +148,7 @@ export function ContactUs() {
             {/* Contact Information */}
             <div className="space-y-6 mb-10">
               <div className="flex items-start gap-4 group">
-                <a href="tel:+447488372418" className="flex items-start gap-4">
+                <a href="tel:07488372418" className="flex items-start gap-4">
                   <Phone className="w-5 h-5 text-white flex-shrink-0 mt-1 transition-transform group-hover:scale-110" />
                   <div className="text-white">
                     <p className="font-semibold mb-1">Telephone:</p>
@@ -259,7 +259,7 @@ export function ContactUs() {
                   name="Phone"
                   type="tel"
                   required
-                  placeholder="E.g. +44 7488 372418"
+                  placeholder="E.g. 07488 372418"
                 />
               </div>
 

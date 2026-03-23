@@ -70,8 +70,8 @@ export function SecurityReception() {
     return (
         <div className="min-h-screen font-['Outfit'] bg-white">
             <Helmet>
-                <title>Security Reception | Zarkoon Security Limited</title>
-                <meta name="description" content="Professional, welcoming, and secure reception security officers providing customer service and rigorous access control for your corporate premises." />
+                <title>Professional Security Reception & Concierge Services | Zarkoon Security Limited</title>
+                <meta name="description" content="Professional, welcoming, and secure reception security officers providing elite customer service and rigorous access control for your corporate premises." />
             </Helmet>
             {/* Hero Section */}
             <section className="relative min-h-[550px] flex items-center justify-center overflow-hidden">
@@ -164,7 +164,7 @@ export function SecurityReception() {
                                         value={formData.phone}
                                         onChange={handlePhoneChange}
                                         required
-                                        placeholder="+44"
+                                        placeholder="07488 372418"
                                         className="bg-white border-2 border-[#0A1929]/50 h-14 focus:border-[#5DADE2] text-[#0A1929] rounded-2xl"
                                     />
                                 </div>

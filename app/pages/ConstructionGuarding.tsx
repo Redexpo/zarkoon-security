@@ -9,8 +9,8 @@ export function ConstructionGuarding() {
     return (
         <div className="min-h-screen font-['Outfit'] bg-white">
             <Helmet>
-                <title>Construction Guarding | Zarkoon Security Limited</title>
-                <meta name="description" content="Specialized construction and estate guarding services providing a robust physical deterrent to ensure your assets and property remain secure 24/7." />
+                <title>Construction Site Security & Estate Guarding | Zarkoon Security Limited</title>
+                <meta name="description" content="Specialized construction and estate guarding services providing a robust physical deterrent to ensure your assets, machinery, and property remain secure 24/7." />
             </Helmet>
             {/* Hero Section */}
             <section className="relative min-h-[550px] flex items-center justify-center overflow-hidden">

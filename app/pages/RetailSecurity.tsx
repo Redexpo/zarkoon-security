@@ -13,8 +13,8 @@ export function RetailSecurity() {
     return (
         <div className="min-h-screen font-['Outfit'] bg-white">
             <Helmet>
-                <title>Retail Security | Zarkoon Security Limited</title>
-                <meta name="description" content="Bespoke retail security solutions, loss prevention, and conflict management to protect your brand and customers." />
+                <title>Retail Security & Loss Prevention Solutions | Zarkoon Security Limited</title>
+                <meta name="description" content="Bespoke retail security solutions, elite loss prevention, and professional conflict management to protect your brand, staff, and customers 24/7." />
             </Helmet>
             {/* Hero Section */}
             <section className="relative min-h-[550px] flex items-center justify-center overflow-hidden">

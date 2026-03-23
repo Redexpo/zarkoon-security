@@ -94,7 +94,7 @@ export function Header() {
                 <p className="text-[10px] font-black text-[#1E5A8E] uppercase tracking-[0.15em] mb-1 leading-none">
                   Open 24 Hours
                 </p>
-                <a href="tel:+447488372418" className="text-lg md:text-xl font-black text-[#0A1929] hover:text-[#1E5A8E] transition-all duration-300 leading-none tracking-tight">
+                <a href="tel:07488372418" className="text-lg md:text-xl font-black text-[#0A1929] hover:text-[#1E5A8E] transition-all duration-300 leading-none tracking-tight">
                   07488 372418
                 </a>
               </div>
@@ -109,8 +109,8 @@ export function Header() {
                 <p className="text-[10px] font-black text-[#1E5A8E] uppercase tracking-[0.15em] mb-1 leading-none">
                   7 Days a Week
                 </p>
-                <a href="mailto:info@zarkoonsecurity.co.uk" className="text-base md:text-lg font-bold text-[#0A1929] hover:text-[#1E5A8E] transition-all duration-300 leading-none lowercase tracking-tight">
-                  info@zarkoonsecurity.co.uk
+                <a href="mailto:sales@zarkoonsecurity.co.uk" className="text-base md:text-lg font-bold text-[#0A1929] hover:text-[#1E5A8E] transition-all duration-300 leading-none lowercase tracking-tight">
+                  sales@zarkoonsecurity.co.uk
                 </a>
               </div>
             </div>
@@ -134,10 +134,9 @@ export function Header() {
       {/* Second Row - Navigation Menu */}
       <nav className="bg-gradient-to-r from-gray-100 to-gray-50 border-b border-gray-300">
         <div className="max-w-7xl mx-auto px-6">
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center justify-center">
+          <ul className="hidden lg:flex items-center justify-center">
             {navLinks.map((link) => (
-              <div
+              <li
                 key={link.name}
                 className="relative h-full"
                 onMouseEnter={() => link.dropdown && handleMouseEnter(link.name)}
@@ -146,6 +145,8 @@ export function Header() {
                 {link.dropdown ? (
                   <button
                     className={`text-[#2C3E50] px-8 py-4 text-sm font-medium tracking-wide hover:bg-white transition-all duration-300 flex items-center gap-1.5 h-full ${activeDropdown === link.name ? 'bg-white' : ''}`}
+                    aria-expanded={activeDropdown === link.name}
+                    aria-haspopup="true"
                   >
                     {link.name} <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180' : ''}`} />
                   </button>
@@ -197,9 +198,9 @@ export function Header() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
 
           {/* Mobile Menu */}
           <AnimatePresence>
@@ -210,14 +211,15 @@ export function Header() {
                 exit={{ height: 0, opacity: 0 }}
                 className="lg:hidden overflow-hidden"
               >
-                <div className="flex flex-col py-4 space-y-1">
+                <ul className="flex flex-col py-4 space-y-1">
                   {navLinks.map((link) => (
-                    <div key={link.name} className="flex flex-col">
+                    <li key={link.name} className="flex flex-col">
                       {link.dropdown ? (
                         <div className="flex flex-col">
                           <button
                             onClick={() => setActiveDropdown(activeDropdown === link.name ? null : link.name)}
                             className="text-[#2C3E50] px-6 py-3 text-sm font-medium tracking-wide hover:bg-white transition-all duration-300 rounded-lg flex items-center justify-between"
+                            aria-expanded={activeDropdown === link.name}
                           >
                             {link.name} <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180' : ''}`} />
                           </button>
@@ -268,9 +270,9 @@ export function Header() {
                           {link.name}
                         </Link>
                       )}
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </motion.div>
             )}
           </AnimatePresence>

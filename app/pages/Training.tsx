@@ -95,7 +95,10 @@ export function Training() {
       try {
          const response = await fetch("https://formsubmit.co/ajax/faizyaqoob55@gmail.com", {
             method: "POST",
-            body: formData
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
          });
          
          if (response.ok) {
@@ -380,7 +383,8 @@ export function Training() {
                         >
                            {/* FormSubmit Configuration */}
                            <input type="hidden" name="_captcha" value="false" />
-                           <input type="hidden" name="Course" value={selectedCourse || ""} />
+                           <input type="text" name="_honey" style={{ display: 'none' }} />
+                           <input type="hidden" name="Course" value={selectedCourse || "No Course Selected"} />
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                            <input type="text" name="Name" placeholder="Your Full Name" className="w-full bg-[#0A1929] border border-white/5 rounded-xl p-4 text-white focus:outline-none focus:border-[#D4AF37]" required />

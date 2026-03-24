@@ -27,7 +27,10 @@ export function ContactUs() {
     try {
       const response = await fetch("https://formsubmit.co/ajax/faizyaqoob55@gmail.com", {
         method: "POST",
-        body: formData
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
       });
       
       if (response.ok) {
@@ -231,7 +234,8 @@ export function ContactUs() {
               >
                 {/* FormSubmit Configuration */}
                 <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="Source" value="Contact Us Page" />
+                <input type="text" name="_honey" style={{ display: 'none' }} />
+                <input type="hidden" name="Source" value="Contact Us Page" />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Name Field */}

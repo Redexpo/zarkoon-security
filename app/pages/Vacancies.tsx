@@ -129,7 +129,10 @@ export function Vacancies() {
     try {
       const response = await fetch("https://formsubmit.co/ajax/faizyaqoob55@gmail.com", {
         method: "POST",
-        body: formData
+        body: formData, // Browser will handle boundaries for multipart/form-data
+        headers: {
+          'Accept': 'application/json'
+        }
       });
       
       if (response.ok) {
@@ -281,8 +284,10 @@ export function Vacancies() {
                   {isSubmitted ? (
                     <div className="bg-green-500/10 border border-green-500/50 rounded-2xl p-10 text-center animate-in fade-in zoom-in duration-500">
                       <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-6" />
-                      <h3 className="text-white text-2xl font-bold mb-2">Thank you!</h3>
-                      <p className="text-gray-300">Your application has been sent successfully.</p>
+                        <h3 className="text-white text-3xl font-bold mb-4">Thank you!</h3>
+                        <p className="text-white/60 mb-8 leading-relaxed">
+                          Your application and CV have been received. Our recruitment team will review your details and contact you soon.
+                        </p>
                       <button 
                         onClick={() => setIsSubmitted(false)}
                         className="mt-8 text-[#5DADE2] hover:text-white transition-colors text-sm font-bold uppercase tracking-widest"
@@ -297,6 +302,7 @@ export function Vacancies() {
                     >
                       {/* FormSubmit Configuration */}
                       <input type="hidden" name="_captcha" value="false" />
+                      <input type="text" name="_honey" style={{ display: 'none' }} />
                       <input type="hidden" name="Position" value={selectedJob || "General Application"} />
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -341,7 +347,7 @@ export function Vacancies() {
                     <label className={`block h-40 border-2 border-dashed ${errors.includes('cvFile') ? 'border-red-500 bg-red-500/5' : 'border-white/10 hover:border-[#5DADE2]'} rounded-xl flex flex-col items-center justify-center transition-colors group cursor-pointer relative overflow-hidden`}>
                       <input 
                         type="file" 
-                        name="CV_Attachment"
+                        name="attachment"
                         accept=".pdf,.doc,.docx" 
                         onChange={handleFileChange} 
                         className="hidden" 

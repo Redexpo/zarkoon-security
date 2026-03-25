@@ -19,14 +19,14 @@ const portals = [
   {
     title: "Highfield eLearning",
     icon: <GraduationCap className="w-12 h-12 text-[#5DADE2]" />,
-    link: "https://www.highfieldlearning.com/",
+    link: "https://www.highfieldelearning.com/",
     description: "Access your mandatory e-learning modules and certification courses.",
     hoverImage: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=800"
   },
   {
-    title: "Ava Academy (CoursePortal)",
+    title: "Avo Academy (CoursePortal)",
     icon: <Building2 className="w-12 h-12 text-[#5DADE2]" />,
-    link: "https://ava-academy.co.uk/",
+    link: "https://avoacademy.courseportal.co.uk/login",
     description: "Comprehensive training resources for specialized security roles.",
     hoverImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800"
   }
@@ -37,7 +37,7 @@ const resources = [
     title: "TARA – Tara Scotland",
     icon: <Info className="w-10 h-10 text-[#D4AF37]" />,
     description: "Training and resource support for corporate security industry.",
-    link: "https://www.tarascotland.com/",
+    link: "https://tarascotland.org.uk/",
     hoverImage: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=800"
   },
   {
@@ -167,7 +167,7 @@ export function TrainingPortal() {
                   className="relative z-20 w-48"
                 >
                   <Button className="w-full bg-[#4A90E2] hover:bg-white hover:text-[#0A1929] text-white font-bold py-6 rounded-none transition-all uppercase tracking-widest text-sm shadow-lg">
-                    {idx === 0 ? "Learn More" : "Read More"}
+                    Learn More
                   </Button>
                 </a>
               </div>

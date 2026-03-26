@@ -115,7 +115,7 @@ export default async function handler(req, res) {
 
     const file = Array.isArray(parsedFiles.attachment) ? parsedFiles.attachment[0] : parsedFiles.attachment;
 
-    console.log("Setting up Nodemailer transporter...");
+    console.log("Setting up Nodemailer transporter (Gmail)...");
 
     // Create Nodemailer transporter using Gmail SMTP
     const transporter = nodemailer.createTransport({
@@ -123,15 +123,15 @@ export default async function handler(req, res) {
       port: 465,
       secure: true,
       auth: {
-        user: 'comedyboy834@gmail.com', // WARNING: Hardcoded for temporary testing
-        pass: 'gpwqkjhaglbnzgia', // WARNING: Hardcoded for temporary testing
+        user: 'info@zarkoonsecurity.co.uk', // New Auth User
+        pass: 'URruP2yw8E2Z', // New App Password
       },
     });
 
     // Setup email data
     const mailOptions = {
-      from: 'comedyboy834@gmail.com',
-      to: 'huzaifa.officialmail@gmail.com', // Hardcoded official client email
+      from: 'info@zarkoonsecurity.co.uk',
+      to: 'huzaifa.officialmail@gmail.com', // Recipient for testing
       replyTo: senderEmail,
       subject: finalSubject,
       text: dynamicBody,
@@ -154,6 +154,45 @@ export default async function handler(req, res) {
       return sendJson(res, 200, { success: true, message: "Email sent" });
     } catch (mailError) {
       console.error("SMTP Error Detail:", mailError);
+      
+      // Fallback logic for 535 (Authentication) or host connectivity issues
+        try {
+          console.log("Attempting fallback to ZOHO EU (smtp.zoho.eu)...");
+          const fallbackTransporter = nodemailer.createTransport({
+            host: "smtp.zoho.eu",
+            port: 465,
+            secure: true,
+            auth: {
+              user: 'info@zarkoonsecurity.co.uk',
+              pass: 'URruP2yw8E2Z',
+            },
+          });
+          const info = await fallbackTransporter.sendMail(mailOptions);
+          console.log("Email sent successfully via Zoho EU: ", info.messageId);
+          return sendJson(res, 200, { success: true, message: "Email sent via Zoho EU fallback" });
+        } catch (fallbackErrorEU) {
+          console.error("Zoho EU Error:", fallbackErrorEU);
+          
+          try {
+            console.log("Attempting fallback to ZOHO US (smtp.zoho.com)...");
+            const fallbackTransporterUS = nodemailer.createTransport({
+              host: "smtp.zoho.com",
+              port: 465,
+              secure: true,
+              auth: {
+                user: 'info@zarkoonsecurity.co.uk',
+                pass: 'URruP2yw8E2Z',
+              },
+            });
+            const infoUS = await fallbackTransporterUS.sendMail(mailOptions);
+            console.log("Email sent successfully via Zoho US: ", infoUS.messageId);
+            return sendJson(res, 200, { success: true, message: "Email sent via Zoho US fallback" });
+          } catch (fallbackErrorUS) {
+            console.error("Zoho US Error:", fallbackErrorUS);
+            return sendJson(res, 500, { success: false, message: "Email delivery failed on all 3 hosts (Gmail, Zoho EU, Zoho US)", error: fallbackErrorUS.message });
+          }
+        }
+      
       return sendJson(res, 500, { success: false, message: "Email delivery failed", error: mailError.message });
     }
 

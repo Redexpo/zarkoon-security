@@ -1,5 +1,6 @@
 import formidable from "formidable";
 import nodemailer from "nodemailer";
+
 if (process.env.NODE_ENV !== "production") {
   try {
     const dotenv = await import("dotenv");
@@ -12,7 +13,7 @@ if (process.env.NODE_ENV !== "production") {
 export const config = {
   api: {
     bodyParser: false,
-    externalResolver: true, // often helps prevent Vercel complaining about no res.end
+    externalResolver: true,
   },
 };
 
@@ -26,7 +27,6 @@ const sendJson = (res, statusCode, data) => {
 };
 
 export default async function handler(req, res) {
-  // CORS setup for production (Vercel routes sometimes need explicit CORS if fetched from different origins)
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
 
   const form = formidable({
     keepExtensions: true,
-    maxFileSize: 5 * 1024 * 1024, // 5MB limit
+    maxFileSize: 5 * 1024 * 1024,
   });
 
   let parsedFields, parsedFiles;
@@ -61,12 +61,11 @@ export default async function handler(req, res) {
     parsedFields = fields;
     parsedFiles = files;
   } catch (parseError) {
-    console.error("Error specifically during file/form parsing:", parseError);
+    console.error("Error during form parsing:", parseError);
     return sendJson(res, 500, { success: false, message: "Form Parse failed", error: parseError.message });
   }
 
   try {
-    // Extract primary identifiers safely
     const fullName = Array.isArray(parsedFields.Full_Name) ? parsedFields.Full_Name[0] : parsedFields.Full_Name;
     const nameStr = Array.isArray(parsedFields.Name) ? parsedFields.Name[0] : parsedFields.Name;
     const senderName = nameStr || fullName || "Applicant";
@@ -85,7 +84,6 @@ export default async function handler(req, res) {
     const determinedFormType = formType || subjectToken || "Web Form";
     const finalSubject = `Zarkoon Security - New Inquiry (${determinedFormType}) from ${senderName}`;
 
-    // Dynamically build the email body exactly as requested
     let dynamicBody = `Form Type: ${determinedFormType}\n`;
     dynamicBody += `Sender Name: ${senderName}\n`;
     dynamicBody += `Email: ${senderEmail}\n`;
@@ -99,9 +97,7 @@ export default async function handler(req, res) {
     dynamicBody += `Additional Details:\n`;
     dynamicBody += `--------------------------------------------------------\n`;
     
-    // Extrapolate any other unique fields dynamically
     for (const [key, value] of Object.entries(parsedFields)) {
-      // Exclude implicitly mapped metadata & standard keys
       const excludedKeys = ['formType', '_subject', '_captcha', '_template', 'Name', 'Full_Name', 'Email', 'email', 'Phone', 'phone', 'Message'];
       if (excludedKeys.includes(key)) continue;
       
@@ -115,23 +111,18 @@ export default async function handler(req, res) {
 
     const file = Array.isArray(parsedFiles.attachment) ? parsedFiles.attachment[0] : parsedFiles.attachment;
 
-    console.log("Setting up Nodemailer transporter (Gmail)...");
-
-    // Create Nodemailer transporter using Gmail SMTP
+    console.log("Setting up Gmail Nodemailer transporter...");
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
+      service: 'gmail',
       auth: {
-        user: 'info@zarkoonsecurity.co.uk', // New Auth User
-        pass: 'URruP2yw8E2Z', // New App Password
+        user: 'info@zarkoonsecurity.co.uk',
+        pass: 'URruP2yw8E2Z',
       },
     });
 
-    // Setup email data
     const mailOptions = {
-      from: 'info@zarkoonsecurity.co.uk',
-      to: 'huzaifa.officialmail@gmail.com', // Recipient for testing
+      from: '"Zarkoon Security - Website Inquiry" <info@zarkoonsecurity.co.uk>',
+      to: 'info@zarkoonsecurity.co.uk',
       replyTo: senderEmail,
       subject: finalSubject,
       text: dynamicBody,
@@ -146,58 +137,12 @@ export default async function handler(req, res) {
     };
 
     console.log("Attempting to send email via Gmail...");
-    
-    try {
-      // Send the email
-      const info = await transporter.sendMail(mailOptions);
-      console.log("Email sent successfully: ", info.messageId);
-      return sendJson(res, 200, { success: true, message: "Email sent" });
-    } catch (mailError) {
-      console.error("SMTP Error Detail:", mailError);
-      
-      // Fallback logic for 535 (Authentication) or host connectivity issues
-        try {
-          console.log("Attempting fallback to ZOHO EU (smtp.zoho.eu)...");
-          const fallbackTransporter = nodemailer.createTransport({
-            host: "smtp.zoho.eu",
-            port: 465,
-            secure: true,
-            auth: {
-              user: 'info@zarkoonsecurity.co.uk',
-              pass: 'URruP2yw8E2Z',
-            },
-          });
-          const info = await fallbackTransporter.sendMail(mailOptions);
-          console.log("Email sent successfully via Zoho EU: ", info.messageId);
-          return sendJson(res, 200, { success: true, message: "Email sent via Zoho EU fallback" });
-        } catch (fallbackErrorEU) {
-          console.error("Zoho EU Error:", fallbackErrorEU);
-          
-          try {
-            console.log("Attempting fallback to ZOHO US (smtp.zoho.com)...");
-            const fallbackTransporterUS = nodemailer.createTransport({
-              host: "smtp.zoho.com",
-              port: 465,
-              secure: true,
-              auth: {
-                user: 'info@zarkoonsecurity.co.uk',
-                pass: 'URruP2yw8E2Z',
-              },
-            });
-            const infoUS = await fallbackTransporterUS.sendMail(mailOptions);
-            console.log("Email sent successfully via Zoho US: ", infoUS.messageId);
-            return sendJson(res, 200, { success: true, message: "Email sent via Zoho US fallback" });
-          } catch (fallbackErrorUS) {
-            console.error("Zoho US Error:", fallbackErrorUS);
-            return sendJson(res, 500, { success: false, message: "Email delivery failed on all 3 hosts (Gmail, Zoho EU, Zoho US)", error: fallbackErrorUS.message });
-          }
-        }
-      
-      return sendJson(res, 500, { success: false, message: "Email delivery failed", error: mailError.message });
-    }
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully: ", info.messageId);
+    return sendJson(res, 200, { success: true, message: "Email sent" });
 
   } catch (error) {
-    console.error("General Error processing fields:", error);
-    return sendJson(res, 500, { success: false, message: "Server error stringifying fields", error: error.message });
+    console.error("SMTP Error Detail:", error);
+    return sendJson(res, 500, { success: false, message: "Email delivery failed", error: error.message });
   }
 }
